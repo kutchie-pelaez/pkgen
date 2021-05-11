@@ -26,6 +26,7 @@ public extension PackageGenCLI {
 
     func execute(arguments: [String]? = nil) {
         let status: Int32
+
         if let arguments = arguments {
             status = cli.go(with: arguments)
         } else {

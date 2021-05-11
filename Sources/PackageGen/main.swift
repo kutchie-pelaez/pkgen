@@ -1,4 +1,4 @@
 import PackageGenCLI
 
 let cli = PackageGenCLI()
-cli.execute()
+cli.execute(arguments: ["generate"])

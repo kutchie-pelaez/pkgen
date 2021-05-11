@@ -31,6 +31,7 @@ let package = Package(
         .target(
             name: "PackageGenCLI",
             dependencies: [
+                "Core",
                 "SwiftCLI",
                 "Rainbow",
                 "PathKit"
