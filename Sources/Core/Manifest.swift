@@ -6,7 +6,7 @@ public struct Manifest: Decodable {
     public private(set) var swiftToolsVersion: String!
     public private(set) var name: String!
     public private(set) var platforms: [Platform]!
-//    public private(set) var products: [Product]!
+    public private(set) var products: [Product]!
 //    public private(set) var dependencies: [Dependency]!
 //    public private(set) var targets: [Target]!
 
@@ -35,6 +35,19 @@ public struct Manifest: Decodable {
             }
         }
 
+        let fallbackProducts = { () throws -> [Product] in
+            let fallbackStaticLibrary = Product.library(
+                .init(name: try fallbackName(),
+                      targets: [
+                        try fallbackName()
+                      ],
+                      linking: .static
+                )
+            )
+
+            return [fallbackStaticLibrary]
+        }
+
         // Fallback nil properties
 
         if manifest.swiftToolsVersion == nil {
@@ -48,13 +61,17 @@ public struct Manifest: Decodable {
         if manifest.platforms == nil {
             manifest.platforms = try fallbackPlatforms()
         }
+
+        if manifest.products == nil {
+            manifest.products = try fallbackProducts()
+        }
     }
 
     // MARK: - Decodable
 
     private enum CodingKeys: String, CodingKey {
-        case swiftToolsVersion, name, platforms
-//             products, dependencies, targets
+        case swiftToolsVersion, name, platforms, products
+//             , dependencies, targets
     }
 
     public init(from decoder: Decoder) throws {
@@ -63,6 +80,7 @@ public struct Manifest: Decodable {
         swiftToolsVersion = try? container.decode(String.self, forKey: .swiftToolsVersion)
         name = try? container.decode(String.self, forKey: .name)
         platforms = try? container.decode([Platform].self, forKey: .platforms)
+        products = try? container.decode([Product].self, forKey: .products)
     }
 
     // MARK: - Decoding errors
@@ -75,7 +93,10 @@ public struct Manifest: Decodable {
 
 
 
-
+//// swift-tools-version:5.3.0
+//
+//import PackageDescription
+//
 //let package = Package(
 //    name: "PackageGen",
 //    platforms: [
