@@ -9,7 +9,7 @@ public struct Manifest: Decodable {
     public private(set) var products: [Product]!
     private var rawStringDependencies: [String] = []
     public private(set) var dependencies: [Dependency]!
-//    public private(set) var targets: [Target]!
+    public private(set) var targets: [Target]!
 
     public init(from data: Data,
                 at path: Path,
@@ -85,7 +85,24 @@ public struct Manifest: Decodable {
 
         manifest.dependencies = allDependencies
 
-        // Manifest is configured here
+        // Set targets after dependencies
+
+        let fallbackTargets = { () throws -> [Target] in
+            let fallbackTarget = Target(
+                name: try fallbackName(),
+                dependencies: [
+                    try fallbackName()
+                ]
+            )
+
+            return [fallbackTarget]
+        }
+
+        if manifest.targets == nil {
+            manifest.targets = try fallbackTargets()
+        }
+
+        // Manifest is finally configured here
 
         self = manifest
     }
@@ -93,8 +110,7 @@ public struct Manifest: Decodable {
     // MARK: - Decodable
 
     private enum CodingKeys: String, CodingKey {
-        case swiftToolsVersion, name, platforms, products, dependencies
-//             , , targets
+        case swiftToolsVersion, name, platforms, products, dependencies, targets
     }
 
     public init(from decoder: Decoder) throws {
@@ -106,6 +122,7 @@ public struct Manifest: Decodable {
         products = try? container.decode([Product].self, forKey: .products)
         products = try? container.decode([Product].self, forKey: .products)
         rawStringDependencies = (try? container.decode([String].self, forKey: .dependencies)) ?? []
+        targets = try? container.decode([Target].self, forKey: .targets)
     }
 
     // MARK: - Decoding errors
