@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Product: Decodable {
+public enum Product: Decodable, Equatable {
     case executable(Executable)
     case library(Library)
 

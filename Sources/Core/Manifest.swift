@@ -2,7 +2,7 @@ import Yams
 import PathKit
 import Foundation
 
-public struct Manifest: Decodable {
+public struct Manifest: Decodable, Equatable {
     public private(set) var swiftToolsVersion: String!
     public private(set) var name: String!
     public private(set) var platforms: Platforms!
@@ -10,6 +10,20 @@ public struct Manifest: Decodable {
     private var rawStringDependencies: [String] = []
     public private(set) var dependencies: [Dependency]!
     public private(set) var targets: [Target]!
+
+    public init(swiftToolsVersion: String,
+                name: String,
+                platforms: Platforms,
+                products: [Product],
+                dependencies: [Dependency],
+                targets: [Target]) {
+        self.swiftToolsVersion = swiftToolsVersion
+        self.name = name
+        self.platforms = platforms
+        self.products = products
+        self.dependencies = dependencies
+        self.targets = targets
+    }
 
     public init(from data: Data,
                 at path: Path,
@@ -105,6 +119,17 @@ public struct Manifest: Decodable {
         products = try? container.decode([Product].self, forKey: .products)
         rawStringDependencies = (try? container.decode([String].self, forKey: .dependencies)) ?? []
         targets = try? container.decode([Target].self, forKey: .targets)
+    }
+
+    // MARK: - Equatable
+
+    public static func == (lhs: Manifest, rhs: Manifest) -> Bool {
+        lhs.swiftToolsVersion == rhs.swiftToolsVersion &&
+        lhs.name == rhs.name &&
+        lhs.platforms == rhs.platforms &&
+        lhs.products == rhs.products &&
+        lhs.dependencies == rhs.dependencies &&
+        lhs.targets == rhs.targets
     }
 
     // MARK: - Decoding errors

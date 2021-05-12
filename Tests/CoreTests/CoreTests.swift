@@ -42,6 +42,14 @@ final class CoreTests: XCTestCase {
             "Packagefile from file differs from expected"
         )
     }
+
+    func test4_comparingManifests() {
+        XCTAssertEqual(
+            manifest,
+            Self.expectedDymmyManifest,
+            "Manifest from file differs from expected"
+        )
+    }
 }
 
 // MARK: - Private
@@ -68,6 +76,53 @@ private extension CoreTests {
                     path: "jpsim/Yams",
                     route: .from("4.0.0")
                 )
+            )
+        ]
+    )
+
+    static var expectedDymmyManifest = Manifest(
+        swiftToolsVersion: "5.3",
+        name: "CoreTests",
+        platforms: .init(
+            iOS: "v14",
+            macOS: "v10_13"
+        ),
+        products: [
+            .library(
+                .init(
+                    name: "CoreTests",
+                    targets: [
+                        "CoreTests"
+                    ],
+                    linking: .auto
+                )
+            )
+        ],
+        dependencies: [
+            .external(
+                .github(
+                    .init(
+                        path: "kylef/PathKit",
+                        route: .branch("master")
+                    )
+                )
+            ),
+            .external(
+                .github(
+                    .init(
+                        path: "jpsim/Yams",
+                        route: .from("4.0.0")
+                    )
+                )
+            ),
+        ],
+        targets: [
+            .init(
+                name: "CoreTests",
+                dependencies: [
+                    "PathKit",
+                    "Yams"
+                ]
             )
         ]
     )

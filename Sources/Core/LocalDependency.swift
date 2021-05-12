@@ -1,7 +1,7 @@
 import Foundation
 import PathKit
 
-public enum LocalDependency: Decodable {
+public enum LocalDependency: Decodable, Equatable {
     case path(String)
 
     public func name() throws -> String {

@@ -1,4 +1,4 @@
-public enum Dependency {
+public enum Dependency: Equatable {
     case external(ExternalDependency)
     case local(LocalDependency)
 

@@ -1,11 +1,19 @@
 extension Product {
 
-    public struct Library {
+    public struct Library: Equatable {
         public let name: String
         public let targets: [String]
         public let linking: Linking
 
-        public enum Linking: String {
+        public init(name: String,
+                    targets: [String],
+                    linking: Linking) {
+            self.name = name
+            self.targets = targets
+            self.linking = linking
+        }
+
+        public enum Linking: String, Equatable {
             case `static`
             case dynamic
             case auto
