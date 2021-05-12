@@ -20,8 +20,6 @@ public final class PackageGenCLI {
     public init() { }
 }
 
-
-
 public extension PackageGenCLI {
 
     func execute(arguments: [String]? = nil) {
