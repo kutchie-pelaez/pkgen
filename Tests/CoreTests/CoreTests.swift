@@ -2,10 +2,14 @@
 import XCTest
 import PathKit
 
+// MARK: - Dummy files helpers
+
 private var dummyPackagefilePath = Path(#file).parent() + "DummyPackagefile"
 private var dummyManifestPath = Path(#file).parent() + "dummy_package.yml"
 private var packagefile: Packagefile!
 private var manifest: Manifest!
+
+// MARK: - Tests
 
 final class CoreTests: XCTestCase {
 
@@ -30,4 +34,41 @@ final class CoreTests: XCTestCase {
             XCTAssert(false, error.localizedDescription)
         }
     }
+
+    func test3_comparingPackagefiles() {
+        XCTAssertEqual(
+            packagefile,
+            Self.expectedDymmyPackagefile,
+            "Packagefile from file differs from expected"
+        )
+    }
+}
+
+// MARK: - Private
+
+private extension CoreTests {
+
+    static var expectedDymmyPackagefile = Packagefile(
+        options: .init(
+            swiftToolsVersion: "5.3",
+            platforms: .init(
+                iOS: "v14",
+                macOS: "v10_13"
+            )
+        ),
+        externalDependencies: [
+            .github(
+                .init(
+                    path: "kylef/PathKit",
+                    route: .branch("master")
+                )
+            ),
+            .github(
+                .init(
+                    path: "jpsim/Yams",
+                    route: .from("4.0.0")
+                )
+            )
+        ]
+    )
 }

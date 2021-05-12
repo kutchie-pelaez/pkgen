@@ -2,9 +2,15 @@ import Foundation
 
 extension Packagefile {
 
-    public struct Options: Decodable {
+    public struct Options: Decodable, Equatable {
         public let swiftToolsVersion: String
         public let platforms: Platforms
+
+        public init(swiftToolsVersion: String,
+                    platforms: Platforms) {
+            self.swiftToolsVersion = swiftToolsVersion
+            self.platforms = platforms
+        }
 
         // MARK: - Decodable
 

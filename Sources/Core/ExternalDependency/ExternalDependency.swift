@@ -1,7 +1,7 @@
 import Foundation
 import PathKit
 
-public enum ExternalDependency: Decodable {
+public enum ExternalDependency: Decodable, Equatable {
     case github(Github)
 
     public func name() throws -> String {
