@@ -24,10 +24,10 @@ enum Package: String, CaseIterable {
 
 final class GenerationTests: XCTestCase {
 
-    func testModuleAPackageFileGeneration() { testPackageFileGeneration(for: .A) }
-    func testModuleBPackageFileGeneration() { testPackageFileGeneration(for: .B) }
-    func testModuleCPackageFileGeneration() { testPackageFileGeneration(for: .C) }
-    func testModuleDPackageFileGeneration() { testPackageFileGeneration(for: .D) }
+    func test1_moduleAPackageFileGeneration() { testPackageFileGeneration(for: .A) }
+    func test2_moduleBPackageFileGeneration() { testPackageFileGeneration(for: .B) }
+    func test3_moduleCPackageFileGeneration() { testPackageFileGeneration(for: .C) }
+    func test4_moduleDPackageFileGeneration() { testPackageFileGeneration(for: .D) }
 }
 
 // MARK: - Private

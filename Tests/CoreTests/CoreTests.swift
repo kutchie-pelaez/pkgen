@@ -9,7 +9,7 @@ private var manifest: Manifest!
 
 final class CoreTests: XCTestCase {
 
-    func testaPackagefileParsing() {
+    func test1_packagefileParsing() {
         do {
             let packagefileData = try dummyPackagefilePath.read()
             packagefile = try Packagefile(from: packagefileData)
@@ -18,7 +18,7 @@ final class CoreTests: XCTestCase {
         }
     }
 
-    func testPackageManifestParsing() {
+    func test2_manifestParsing() {
         do {
             let manifestData = try dummyManifestPath.read()
             manifest = try Manifest(
