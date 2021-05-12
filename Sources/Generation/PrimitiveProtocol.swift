@@ -23,6 +23,6 @@ extension PrimitiveProtocol {
     func `import`(_ module: String) -> PrimitiveProtocol { self.chain(Import(module)) }
     var newLine: PrimitiveProtocol { self.chain(NewLine()) }
     var space: PrimitiveProtocol { self.chain(Space()) }
-    func swiftToolVersion(_ version: String) -> PrimitiveProtocol { self.chain(SwiftToolVersion(version)) }
+    func swiftToolsVersion(_ version: String) -> PrimitiveProtocol { self.chain(SwiftToolsVersion(version)) }
     var tab: PrimitiveProtocol { self.chain(Tab()) }
 }

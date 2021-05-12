@@ -1,4 +1,4 @@
-struct SwiftToolVersion: PrimitiveProtocol {
+struct SwiftToolsVersion: PrimitiveProtocol {
 
     private let version: String
 

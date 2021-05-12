@@ -11,7 +11,7 @@ final class PackageGenerator {
 
     public func generateRawPackageBasedOnManifest() throws -> String {
         Empty()
-            .swiftToolVersion(manifest.swiftToolsVersion)
+            .swiftToolsVersion(manifest.swiftToolsVersion)
             .newLine
             .newLine
             .import("PackageDescription")
