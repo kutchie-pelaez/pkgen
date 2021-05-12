@@ -3,6 +3,7 @@ import PathKit
 import Foundation
 
 public struct Manifest: Decodable {
+    public private(set) var swiftToolsVersion: String!
     public private(set) var name: String!
     public private(set) var platforms: [Platform]!
 //    public private(set) var products: [Product]!
@@ -36,6 +37,10 @@ public struct Manifest: Decodable {
 
         // Fallback nil properties
 
+        if manifest.swiftToolsVersion == nil {
+            manifest.swiftToolsVersion = configuration.options.swiftToolsVersion
+        }
+
         if manifest.name == nil {
             manifest.name = try fallbackName()
         }
@@ -48,13 +53,14 @@ public struct Manifest: Decodable {
     // MARK: - Decodable
 
     private enum CodingKeys: String, CodingKey {
-        case name, platforms
+        case swiftToolsVersion, name, platforms
 //             products, dependencies, targets
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        swiftToolsVersion = try? container.decode(String.self, forKey: .swiftToolsVersion)
         name = try? container.decode(String.self, forKey: .name)
         platforms = try? container.decode([Platform].self, forKey: .platforms)
     }
