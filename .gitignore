@@ -1,6 +1,7 @@
 .DS_Store
 .swiftpm
 .build
+.vscode
 Package.resolved
 /Tests/AllTests/FixtureProject/FixtureProject.xcworkspace/xcuserdata
 /Tests/AllTests/FixtureProject/FixtureProject.xcworkspace/xcshareddata
