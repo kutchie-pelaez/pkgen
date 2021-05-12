@@ -3,28 +3,32 @@ import XCTest
 import PathKit
 import Core
 
-private let projectPath = Path(#file).parent() + "FixtureProject"
-private let projectConfigPath = projectPath + "pkgconfig.yml"
-private var projectConfig: Configuration!
+// MARK: - Paths
 
-enum FixtureProjectModule: String, CaseIterable {
+private let projectPath = Path(#file).parent().parent().parent() + "FixtureProject"
+private let packagefilePath = projectPath + "Packagefile"
+private var configuration: Configuration!
+
+// MARK: - Packages from test project
+
+enum Package: String, CaseIterable {
     case A, B, C, D
 
-    var name: String { "Module\(rawValue)" }
+    var name: String { "Package\(rawValue)" }
     var path: Path { projectPath + "packages" + name }
-    var manifestPath: Path { path + "manifest.yml" }
+    var manifestPath: Path { path + "package.yml" }
     var packagePath: Path { path + "Package.swift" }
     var expectationPackagePath: Path { path + "Expectation.Package.swift" }
 }
 
 // MARK: - Tests
 
-final class AllTests: XCTestCase {
+final class GenerationTests: XCTestCase {
 
     func testConfigurationParsing() {
         do {
-            let configData = try projectConfigPath.read()
-            projectConfig = try Configuration(from: configData)
+            let configData = try packagefilePath.read()
+            configuration = try Configuration(from: configData)
         } catch let error {
             XCTAssert(false, error.localizedDescription)
         }
@@ -38,17 +42,15 @@ final class AllTests: XCTestCase {
 
 // MARK: - Private
 
-private extension AllTests {
+private extension GenerationTests {
 
-    func testPackageFileGeneration(for module: FixtureProjectModule) {
-        cleanGeneratedFiles(for: module)
-
+    func testPackageFileGeneration(for package: Package) {
         do {
-            let writer = PackageFileWriter(configurationPath: projectConfigPath)
-            try writer.write(from: module.manifestPath, to: module.packagePath)
+            let writer = PackageFileWriter(configurationPath: packagefilePath)
+            try writer.write(from: package.manifestPath, to: package.packagePath)
 
-            let generatedPackageData = try module.packagePath.read()
-            let expectationPackageData = try module.expectationPackagePath.read()
+            let generatedPackageData = try package.packagePath.read()
+            let expectationPackageData = try package.expectationPackagePath.read()
 
             guard let generatedPackageRawString = String(data: generatedPackageData, encoding: .utf8) else { return XCTAssert(false, "Failed to read generated package file") }
             guard let expectationPackageRawString = String(data: expectationPackageData, encoding: .utf8) else { return XCTAssert(false, "Failed to read expectation package file") }
@@ -57,11 +59,5 @@ private extension AllTests {
         } catch let error {
             XCTAssert(false, error.localizedDescription)
         }
-
-        cleanGeneratedFiles(for: module)
-    }
-
-    func cleanGeneratedFiles(for module: FixtureProjectModule) {
-        try? module.packagePath.delete()
     }
 }

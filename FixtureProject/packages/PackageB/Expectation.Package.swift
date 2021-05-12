@@ -3,26 +3,26 @@
 import PackageDescription
 
 let package = Package(
-    name: "ModuleB",
+    name: "PackageB",
     platforms: [
         .macOS(.v10_13)
     ],
     products: [
         .library(
-            name: "ModuleB",
+            name: "PackageB",
             targets: [
-                "ModuleB"
+                "PackageB"
             ]
         )
     ],
     dependencies: [
-        .package(path: "../ModuleA")
+        .package(path: "../PackageA")
     ],
     targets: [
         .target(
-            name: "ModuleB",
+            name: "PackageB",
             dependencies: [
-                .product(name: "ModuleA", package: "ModuleA")
+                .product(name: "PackageA", package: "PackageA")
             ],
             path: "Sources"
         )

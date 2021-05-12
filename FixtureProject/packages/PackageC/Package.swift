@@ -3,30 +3,30 @@
 import PackageDescription
 
 let package = Package(
-    name: "ModuleC",
+    name: "PackageC",
     platforms: [
         .macOS(.v10_13)
     ],
     products: [
         .library(
-            name: "ModuleC",
+            name: "PackageC",
             targets: [
-                "ModuleC"
+                "PackageC"
             ]
         )
     ],
     dependencies: [
         .package(url: "https://github.com/kylef/PathKit.git", .branch("master")),
-        .package(path: "../ModuleA"),
-        .package(path: "../ModuleB")
+        .package(path: "../PackageA"),
+        .package(path: "../PackageB")
     ],
     targets: [
         .target(
-            name: "ModuleC",
+            name: "PackageC",
             dependencies: [
                 .product(name: "PathKit", package: "PathKit"),
-                .product(name: "ModuleA", package: "ModuleA"),
-                .product(name: "ModuleB", package: "ModuleB")
+                .product(name: "PackageA", package: "PackageA"),
+                .product(name: "PackageB", package: "PackageB")
             ],
             path: "Sources"
         )

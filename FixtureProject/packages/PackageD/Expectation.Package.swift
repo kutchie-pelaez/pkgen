@@ -3,34 +3,34 @@
 import PackageDescription
 
 let package = Package(
-    name: "ModuleD",
+    name: "PackageD",
     platforms: [
         .macOS(.v10_13)
     ],
     products: [
         .library(
-            name: "ModuleD",
+            name: "PackageD",
             targets: [
-                "ModuleD"
+                "PackageD"
             ]
         )
     ],
     dependencies: [
         .package(url: "https://github.com/kylef/PathKit.git", .branch("master")),
         .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0"),
-        .package(path: "../ModuleC"),
-        .package(path: "../ModuleB"),
-        .package(path: "../ModuleA")
+        .package(path: "../PackageC"),
+        .package(path: "../PackageB"),
+        .package(path: "../PackageA")
     ],
     targets: [
         .target(
-            name: "ModuleD",
+            name: "PackageD",
             dependencies: [
                 .product(name: "PathKit", package: "PathKit"),
                 .product(name: "Yams", package: "Yams"),
-                .product(name: "ModuleC", package: "ModuleC"),
-                .product(name: "ModuleB", package: "ModuleB"),
-                .product(name: "ModuleA", package: "ModuleA")
+                .product(name: "PackageC", package: "PackageC"),
+                .product(name: "PackageB", package: "PackageB"),
+                .product(name: "PackageA", package: "PackageA")
             ],
             path: "Sources"
         )

@@ -2,15 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:packages/ModuleD">
+      location = "group:packages/PackageD">
    </FileRef>
    <FileRef
-      location = "group:packages/ModuleC">
+      location = "group:packages/PackageC">
    </FileRef>
    <FileRef
-      location = "group:packages/ModuleB">
+      location = "group:packages/PackageB">
    </FileRef>
    <FileRef
-      location = "group:packages/ModuleA">
+      location = "group:packages/PackageA">
    </FileRef>
 </Workspace>

@@ -1,6 +1,5 @@
 import PathKit
 import Core
-import Foundation
 
 public final class PackageFileWriter {
 

@@ -31,7 +31,6 @@ let package = Package(
             name: "PackageGenCLI",
             dependencies: [
                 "Generation",
-                "Core",
                 "SwiftCLI",
                 "PathKit"
             ]
@@ -51,13 +50,13 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "AllTests",
+            name: "GenerationTests",
             dependencies: [
                 "Generation",
                 "Core"
             ],
             exclude: [
-                "FixtureProject"
+                "TestProject"
             ]
         )
     ]

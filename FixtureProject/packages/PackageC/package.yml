@@ -1,4 +1,4 @@
 dependencies:
   - PathKit
-  - ModuleA
-  - ModuleB
+  - PackageA
+  - PackageB

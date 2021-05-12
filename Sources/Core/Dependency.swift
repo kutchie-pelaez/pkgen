@@ -1,5 +1,3 @@
-import Foundation
-
 public enum Dependency {
     case external(ExternalDependency)
     case local(LocalDependency)

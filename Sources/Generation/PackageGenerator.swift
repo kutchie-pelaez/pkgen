@@ -1,4 +1,3 @@
-import Foundation
 import Core
 
 final class PackageGenerator {
