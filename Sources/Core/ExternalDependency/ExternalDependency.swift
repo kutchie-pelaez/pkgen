@@ -1,7 +1,17 @@
 import Foundation
+import PathKit
 
 public enum ExternalDependency: Decodable {
     case github(Github)
+
+    public func name() throws -> String {
+        switch self {
+        case let .github(github):
+            guard let lastPathName = Path(github.path).components.last else { throw ExternalDependencyDecodingError.invalidGithubPath }
+
+            return lastPathName
+        }
+    }
 
     // MARK: - Decodable
 
@@ -29,6 +39,7 @@ public enum ExternalDependency: Decodable {
 
     public enum ExternalDependencyDecodingError: Error {
         case invalidGithubRoute
+        case invalidGithubPath
         case invalidSource
     }
 }

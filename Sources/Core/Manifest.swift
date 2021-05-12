@@ -7,7 +7,8 @@ public struct Manifest: Decodable {
     public private(set) var name: String!
     public private(set) var platforms: [Platform]!
     public private(set) var products: [Product]!
-//    public private(set) var dependencies: [Dependency]!
+    private var rawStrigDependencies: [String] = []
+    public private(set) var dependencies: [Dependency]!
 //    public private(set) var targets: [Target]!
 
     public init(from data: Data,
@@ -65,13 +66,35 @@ public struct Manifest: Decodable {
         if manifest.products == nil {
             manifest.products = try fallbackProducts()
         }
+
+        // Find dependencies for package
+
+        var rawStrigDependencies = manifest.rawStrigDependencies
+
+        let externalDependencies = try configuration.externalDependencies
+            .filter { externalDependency in
+                let name = try externalDependency.name()
+
+                return rawStrigDependencies.contains(name)
+            }
+        rawStrigDependencies.removeAll(where: { externalDependencies.compactMap { try? $0.name() }.contains($0) })
+
+        let localDependencies = rawStrigDependencies.map { LocalDependency.path($0) }
+
+        let allDependencies = externalDependencies.map { Dependency.external($0) } + localDependencies.map { Dependency.local($0) }
+
+        manifest.dependencies = allDependencies
+
+        // Manifest is configured here
+
+        self = manifest
     }
 
     // MARK: - Decodable
 
     private enum CodingKeys: String, CodingKey {
-        case swiftToolsVersion, name, platforms, products
-//             , dependencies, targets
+        case swiftToolsVersion, name, platforms, products, dependencies
+//             , , targets
     }
 
     public init(from decoder: Decoder) throws {
@@ -81,6 +104,8 @@ public struct Manifest: Decodable {
         name = try? container.decode(String.self, forKey: .name)
         platforms = try? container.decode([Platform].self, forKey: .platforms)
         products = try? container.decode([Product].self, forKey: .products)
+        products = try? container.decode([Product].self, forKey: .products)
+        rawStrigDependencies = (try? container.decode([String].self, forKey: .dependencies)) ?? []
     }
 
     // MARK: - Decoding errors
