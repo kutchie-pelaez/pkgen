@@ -45,7 +45,7 @@ private extension AllTests {
 
         do {
             let writer = PackageFileWriter(configurationPath: projectConfigPath)
-            try writer.generate(manifestInputPath: module.manifestPath, packageOutputPath: module.packagePath)
+            try writer.write(from: module.manifestPath, to: module.packagePath)
 
             let generatedPackageData = try module.packagePath.read()
             let expectationPackageData = try module.expectationPackagePath.read()

@@ -15,7 +15,7 @@ public final class PackageFileWriter {
         self.configurationPath = configurationPath
     }
 
-    public func generate(manifestInputPath: Path, packageOutputPath: Path) throws {
+    public func write(from manifestInputPath: Path, to packageOutputPath: Path) throws {
         guard let manifestData = try? manifestInputPath.read() else { throw PackageFileWriterError.noManifestFileSpecified }
 
         let configuration = try configuration()
