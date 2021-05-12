@@ -41,7 +41,7 @@ final class AllTests: XCTestCase {
 private extension AllTests {
 
     func testPackageFileGeneration(for module: FixtureProjectModule) {
-//        cleanGeneratedFiles(for: module)
+        cleanGeneratedFiles(for: module)
 
         do {
             let writer = PackageFileWriter(configurationPath: projectConfigPath)
@@ -58,7 +58,7 @@ private extension AllTests {
             XCTAssert(false, error.localizedDescription)
         }
 
-//        cleanGeneratedFiles(for: module)
+        cleanGeneratedFiles(for: module)
     }
 
     func cleanGeneratedFiles(for module: FixtureProjectModule) {
