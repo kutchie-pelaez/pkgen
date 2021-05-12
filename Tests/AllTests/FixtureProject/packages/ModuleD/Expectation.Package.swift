@@ -29,7 +29,7 @@ dependencies: [
 .product(name: "PathKit", package: "PathKit"),
 .product(name: "Yams", package: "Yams"),
 .product(name: "ModuleC", package: "ModuleC"),
-.product(name: "ModuleC", package: "ModuleB"),
+.product(name: "ModuleB", package: "ModuleB"),
 .product(name: "ModuleA", package: "ModuleA")
 ],
 path: "Sources"

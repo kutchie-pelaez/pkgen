@@ -1,7 +1,17 @@
 import Foundation
+import PathKit
 
 public enum LocalDependency: Decodable {
     case path(String)
+
+    public func name() throws -> String {
+        switch self {
+        case let .path(path):
+            guard let lastPathName = Path(path).components.last else { throw LocalDependencyDecodingError.invalidLocalDependencyPath }
+
+            return lastPathName
+        }
+    }
 
     // MARK: - Decodable
 
@@ -23,5 +33,6 @@ public enum LocalDependency: Decodable {
 
     public enum LocalDependencyDecodingError: Error {
         case invalidLocalDependency
+        case invalidLocalDependencyPath
     }
 }

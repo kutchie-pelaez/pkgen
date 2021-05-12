@@ -70,12 +70,13 @@ public struct Manifest: Decodable {
 
         // Set targets after dependencies
 
+        let allDependenciesNames = { () throws -> [String] in
+            try allDependencies.map { try $0.name() }
+        }
         let fallbackTargets = [
             Target(
                 name: fallbackName,
-                dependencies: [
-                    fallbackName
-                ]
+                dependencies: try allDependenciesNames()
             )
         ]
 
@@ -111,5 +112,6 @@ public struct Manifest: Decodable {
     public enum ManifestDecodingError: Error {
         case invalidPackagePath
         case noPlatformsSpecified
+        case invalidDependencyName
     }
 }

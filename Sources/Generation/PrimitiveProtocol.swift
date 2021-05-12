@@ -34,4 +34,5 @@ extension PrimitiveProtocol {
     var space: PrimitiveProtocol { self.chain(Space()) }
     func swiftToolsVersion(_ version: String) -> PrimitiveProtocol { self.chain(SwiftToolsVersion(version)) }
     var tab: PrimitiveProtocol { self.chain(Tab()) }
+    func targets(_ targets: [Target], isLastArgument: Bool = false) -> PrimitiveProtocol { self.chain(Targets(targets, isLastArgument: isLastArgument)) }
 }
