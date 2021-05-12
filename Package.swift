@@ -53,10 +53,17 @@ let package = Package(
             name: "GenerationTests",
             dependencies: [
                 "Generation",
-                "Core"
+                "Core",
+                "PathKit"
             ],
             exclude: [
                 "TestProject"
+            ]
+        ),
+        .testTarget(
+            name: "CoreTests",
+            dependencies: [
+                "Core"
             ]
         )
     ]
