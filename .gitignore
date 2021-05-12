@@ -2,3 +2,7 @@
 .swiftpm
 .build
 Package.resolved
+/Tests/AllTests/FixtureProject/FixtureProject.xcworkspace/xcuserdata
+/Tests/AllTests/FixtureProject/FixtureProject.xcworkspace/xcshareddata
+/Tests/*Package.swift
+!/Tests/*Expectation.Package.swift
