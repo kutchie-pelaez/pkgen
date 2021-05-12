@@ -18,7 +18,10 @@ final class CoreTests: XCTestCase {
             let packagefileData = try dummyPackagefilePath.read()
             packagefile = try Packagefile(from: packagefileData)
         } catch let error {
-            XCTAssert(false, error.localizedDescription)
+            XCTAssert(
+                false,
+                error.localizedDescription
+            )
         }
     }
 
@@ -31,7 +34,10 @@ final class CoreTests: XCTestCase {
                 with: packagefile
             )
         } catch let error {
-            XCTAssert(false, error.localizedDescription)
+            XCTAssert(
+                false,
+                error.localizedDescription
+            )
         }
     }
 
