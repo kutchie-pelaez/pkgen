@@ -62,6 +62,9 @@ let package = Package(
             dependencies: [
                 "Generation",
                 "Core"
+            ],
+            exclude: [
+                "Project/"
             ]
         ),
         .testTarget(

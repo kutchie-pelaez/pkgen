@@ -1,0 +1,10 @@
+options:
+  - swiftToolsVersion: '5.3'
+  - platforms:
+    - macOS: v10_13
+
+externalDependencies:
+  - github: kylef/PathKit
+    branch: master
+  - github: jpsim/Yams
+    from: '4.0.0'
