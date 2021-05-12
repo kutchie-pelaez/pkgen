@@ -30,13 +30,13 @@ let package = Package(
         .target(
             name: "PackageGenCLI",
             dependencies: [
-                "Generation",
+                "CodeGeneration",
                 "SwiftCLI",
                 "PathKit"
             ]
         ),
         .target(
-            name: "Generation",
+            name: "CodeGeneration",
             dependencies: [
                 "Core",
                 "PathKit"
@@ -50,9 +50,9 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "GenerationTests",
+            name: "CodeGenerationTests",
             dependencies: [
-                "Generation",
+                "CodeGeneration",
                 "Core",
                 "PathKit"
             ],

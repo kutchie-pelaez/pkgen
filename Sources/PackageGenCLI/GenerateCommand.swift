@@ -1,6 +1,6 @@
 import SwiftCLI
 import PathKit
-import Generation
+import CodeGeneration
 
 final class GenerateCommand: Command {
 

@@ -1,4 +1,4 @@
-@testable import Generation
+@testable import CodeGeneration
 import XCTest
 import PathKit
 import Core
