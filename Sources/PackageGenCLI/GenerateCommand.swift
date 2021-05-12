@@ -1,6 +1,7 @@
 import SwiftCLI
 import PathKit
 import Core
+import Generation
 import Foundation
 
 final class GenerateCommand: Command {
@@ -8,47 +9,34 @@ final class GenerateCommand: Command {
     let name = "generate"
     let shortDescription = "Generates package files based on manifests"
 
-    func execute() throws {
-        let configFilePath: Path = .current + Constants.defaultConfigurationFileFullname
-        let configData = try configFilePath.read()
-        let configurartion = try Configuration(from: configData)
+    private let configurartionPath: Path = .current + Constants.defaultConfigurationFileFullname
 
-        checkPathAndGoDeeperIfNeeded(at: .current,
-                                     with: configurartion)
+    func execute() throws {
+        try checkPathAndGoDeeperIfNeeded(.current, configurartionPath: configurartionPath)
     }
 }
 
 private extension GenerateCommand {
 
-    func checkPathAndGoDeeperIfNeeded(at path: Path, with configurartion: Configuration) {
+    func checkPathAndGoDeeperIfNeeded(_ path: Path, configurartionPath: Path) throws {
         guard path.isDirectory else { return }
 
-        for component in (try? path.children()) ?? [] {
-            if component.isDirectory {
-                checkPathAndGoDeeperIfNeeded(at: component,
-                                             with: configurartion)
-            } else if component.isFile {
-                createPackageFileIfNeeded(at: component,
-                                          with: configurartion)
+        let children = try path.children()
+
+        for child in children {
+            if child.isDirectory {
+                try checkPathAndGoDeeperIfNeeded(child, configurartionPath: configurartionPath)
+            } else if child.isFile {
+                try generatePackageFileIfNeeded(at: child, configurartionPath: configurartionPath)
             }
         }
     }
 
-    func createPackageFileIfNeeded(at path: Path, with configurartion: Configuration) {
-        guard path.isFile &&
-              path.lastComponent == Constants.defaultManifestFileFullname,
-              let manifestData = try? path.read() else {
-            return
-        }
+    func generatePackageFileIfNeeded(at path: Path, configurartionPath: Path) throws {
+        guard path.isFile && path.lastComponent == Constants.defaultManifestFileFullname else { return }
 
-        guard let _ = try? Manifest(
-            from: manifestData,
-            at: path,
-            with: configurartion
-        ) else {
-            return
-        }
-
-        // TODO: - Generate Package.swift file here
+        let packagePath = path.parent() + "Package.swift"
+        let writer = PackageFileWriter(configurationPath: configurartionPath)
+        try writer.write(from: path, to: packagePath)
     }
 }
