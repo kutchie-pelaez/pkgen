@@ -4,6 +4,7 @@ import Core
 public final class PackageFileWriter {
 
     private let packagefilePath: Path
+
     private func packagefile() throws -> Packagefile {
         guard let packagefileData = try? packagefilePath.read() else { throw PackageFileWriterError.noPackagefileSpecified }
 
@@ -14,13 +15,13 @@ public final class PackageFileWriter {
         self.packagefilePath = packagefilePath
     }
 
-    public func write(from manifestInputPath: Path, to packageOutputPath: Path) throws {
-        guard let manifestData = try? manifestInputPath.read() else { throw PackageFileWriterError.noManifestFileSpecified }
+    public func write(manifestPath: Path, packageOutputPath: Path) throws {
+        guard let manifestData = try? manifestPath.read() else { throw PackageFileWriterError.noManifestFileSpecified }
 
         let packagefile = try packagefile()
         let manifest = try Manifest(
             from: manifestData,
-            at: manifestInputPath,
+            at: manifestPath,
             with: packagefile
         )
 

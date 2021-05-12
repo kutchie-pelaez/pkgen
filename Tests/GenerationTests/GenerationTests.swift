@@ -37,7 +37,7 @@ private extension GenerationTests {
     func testPackageFileGeneration(for package: Package) {
         do {
             let writer = PackageFileWriter(packagefilePath: packagefilePath)
-            try writer.write(from: package.manifestPath, to: package.packagePath)
+            try writer.write(manifestPath: package.manifestPath, packageOutputPath: package.packagePath)
 
             let generatedPackageData = try package.packagePath.read()
             let expectationPackageData = try package.expectationPackagePath.read()

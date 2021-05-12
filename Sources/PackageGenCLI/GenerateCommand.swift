@@ -35,6 +35,6 @@ private extension GenerateCommand {
 
         let packagePath = path.parent() + "Package.swift"
         let writer = PackageFileWriter(packagefilePath: packagefilePath)
-        try writer.write(from: path, to: packagePath)
+        try writer.write(manifestPath: path, packageOutputPath: packagePath)
     }
 }
