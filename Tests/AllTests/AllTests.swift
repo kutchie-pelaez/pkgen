@@ -17,6 +17,8 @@ enum FixtureProjectModule: String, CaseIterable {
     var expectationPackagePath: Path { path + "Expectation.Package.swift" }
 }
 
+// MARK: - Tests
+
 final class AllTests: XCTestCase {
 
     func testConfigurationParsing() {
@@ -28,9 +30,15 @@ final class AllTests: XCTestCase {
         }
     }
 
-    func testAllModuleGeneration() {
-        FixtureProjectModule.allCases.forEach(testPackageFileGeneration)
-    }
+    func testModuleAPackageFileGeneration() { testPackageFileGeneration(for: .A) }
+    func testModuleBPackageFileGeneration() { testPackageFileGeneration(for: .B) }
+    func testModuleCPackageFileGeneration() { testPackageFileGeneration(for: .C) }
+    func testModuleDPackageFileGeneration() { testPackageFileGeneration(for: .D) }
+}
+
+// MARK: - Private
+
+private extension AllTests {
 
     func testPackageFileGeneration(for module: FixtureProjectModule) {
         cleanGeneratedFiles(for: module)
@@ -38,6 +46,14 @@ final class AllTests: XCTestCase {
         let writer = PackageFileWriter(configurationPath: projectConfigPath)
         do {
             try writer.generate(manifestInputPath: module.manifestPath, packageOutputPath: module.packagePath)
+
+            let generatedPackageData = try module.packagePath.read()
+            let expectationPackageData = try module.expectationPackagePath.read()
+
+            guard let generatedPackageRawString = String(data: generatedPackageData, encoding: .utf8) else { return XCTAssert(false, "Failed to read generated package file") }
+            guard let expectationPackageRawString = String(data: expectationPackageData, encoding: .utf8) else { return XCTAssert(false, "Failed to read expectation package file") }
+
+            XCTAssertEqual(generatedPackageRawString, expectationPackageRawString, "Generated package file is not equal to what was expected")
         } catch let error {
             XCTAssert(false, error.localizedDescription)
         }
@@ -46,6 +62,6 @@ final class AllTests: XCTestCase {
     }
 
     func cleanGeneratedFiles(for module: FixtureProjectModule) {
-
+        try? module.packagePath.delete()
     }
 }
