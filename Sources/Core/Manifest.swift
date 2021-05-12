@@ -7,7 +7,7 @@ public struct Manifest: Decodable {
     public private(set) var name: String!
     public private(set) var platforms: [Platform]!
     public private(set) var products: [Product]!
-    private var rawStrigDependencies: [String] = []
+    private var rawStringDependencies: [String] = []
     public private(set) var dependencies: [Dependency]!
 //    public private(set) var targets: [Target]!
 
@@ -69,17 +69,17 @@ public struct Manifest: Decodable {
 
         // Find dependencies for package
 
-        var rawStrigDependencies = manifest.rawStrigDependencies
+        var rawStringDependencies = manifest.rawStringDependencies
 
         let externalDependencies = try configuration.externalDependencies
             .filter { externalDependency in
                 let name = try externalDependency.name()
 
-                return rawStrigDependencies.contains(name)
+                return rawStringDependencies.contains(name)
             }
-        rawStrigDependencies.removeAll(where: { externalDependencies.compactMap { try? $0.name() }.contains($0) })
+        rawStringDependencies.removeAll(where: { externalDependencies.compactMap { try? $0.name() }.contains($0) })
 
-        let localDependencies = rawStrigDependencies.map { LocalDependency.path($0) }
+        let localDependencies = rawStringDependencies.map { LocalDependency.path($0) }
 
         let allDependencies = externalDependencies.map { Dependency.external($0) } + localDependencies.map { Dependency.local($0) }
 
@@ -105,7 +105,7 @@ public struct Manifest: Decodable {
         platforms = try? container.decode([Platform].self, forKey: .platforms)
         products = try? container.decode([Product].self, forKey: .products)
         products = try? container.decode([Product].self, forKey: .products)
-        rawStrigDependencies = (try? container.decode([String].self, forKey: .dependencies)) ?? []
+        rawStringDependencies = (try? container.decode([String].self, forKey: .dependencies)) ?? []
     }
 
     // MARK: - Decoding errors
