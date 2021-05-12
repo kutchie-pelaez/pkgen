@@ -1,7 +1,7 @@
 options:
-  - swiftToolsVersion: '5.3'
-  - platforms:
-    - macOS: v10_13
+  swiftToolsVersion: '5.3'
+  platforms:
+    macOS: v10_13
 
 externalDependencies:
   - github: kylef/PathKit

@@ -51,26 +51,13 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "PackageGenCLITests",
-            dependencies: [
-                "PackageGenCLI",
-                "Core"
-            ]
-        ),
-        .testTarget(
-            name: "GenerationTests",
+            name: "AllTests",
             dependencies: [
                 "Generation",
                 "Core"
             ],
             exclude: [
-                "Project/"
-            ]
-        ),
-        .testTarget(
-            name: "CoreTests",
-            dependencies: [
-                "Core"
+                "FixtureProject"
             ]
         )
     ]
