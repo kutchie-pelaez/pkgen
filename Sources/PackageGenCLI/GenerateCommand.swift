@@ -41,7 +41,7 @@ private extension GenerateCommand {
             return
         }
 
-        guard let manifest = try? Manifest(
+        guard let _ = try? Manifest(
             from: manifestData,
             at: path,
             with: configurartion
