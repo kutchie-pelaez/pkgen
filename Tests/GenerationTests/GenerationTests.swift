@@ -5,7 +5,7 @@ import Core
 
 // MARK: - Paths
 
-private let projectPath = Path(#file).parent().parent().parent() + "DummyProject"
+private let projectPath = Path(#file).parent().parent().parent() + "Fixtures" + "project"
 private let packagefilePath = projectPath + "Packagefile"
 
 // MARK: - All packages from dummy project

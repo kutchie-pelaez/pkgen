@@ -1,8 +1,11 @@
 .DS_Store
-.swiftpm
-.build
-.vscode
 Package.resolved
-DummyProject/DummyProject.xcworkspace/xcshareddata/
-DummyProject/DummyProject.xcworkspace/xcuserdata/
-DummyProject/**/Package.swift
+
+.swiftpm/
+.build/
+.vscode/
+
+xcshareddata/
+xcuserdata/
+
+Fixtures/**/Package.swift

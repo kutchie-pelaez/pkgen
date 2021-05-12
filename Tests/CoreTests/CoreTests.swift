@@ -2,10 +2,10 @@
 import XCTest
 import PathKit
 
-// MARK: - Dummy files helpers
+// MARK: - Fixture files helpers
 
-private var dummyPackagefilePath = Path(#file).parent() + "DummyPackagefile"
-private var dummyManifestPath = Path(#file).parent() + "dummy_package.yml"
+private var fixturePackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile"
+private var fixtureManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package.yml"
 private var packagefile: Packagefile!
 private var manifest: Manifest!
 
@@ -15,7 +15,7 @@ final class CoreTests: XCTestCase {
 
     func test1_packagefileParsing() {
         do {
-            let packagefileData = try dummyPackagefilePath.read()
+            let packagefileData = try fixturePackagefilePath.read()
             packagefile = try Packagefile(from: packagefileData)
         } catch let error {
             XCTAssert(
@@ -27,10 +27,10 @@ final class CoreTests: XCTestCase {
 
     func test2_manifestParsing() {
         do {
-            let manifestData = try dummyManifestPath.read()
+            let manifestData = try fixtureManifestPath.read()
             manifest = try Manifest(
                 from: manifestData,
-                at: dummyManifestPath,
+                at: fixtureManifestPath,
                 with: packagefile
             )
         } catch let error {
@@ -44,7 +44,7 @@ final class CoreTests: XCTestCase {
     func test3_comparingPackagefiles() {
         XCTAssertEqual(
             packagefile,
-            Self.expectedDymmyPackagefile,
+            Self.expectedPackagefile,
             "Packagefile from file differs from expected"
         )
     }
@@ -52,7 +52,7 @@ final class CoreTests: XCTestCase {
     func test4_comparingManifests() {
         XCTAssertEqual(
             manifest,
-            Self.expectedDymmyManifest,
+            Self.expectedManifest,
             "Manifest from file differs from expected"
         )
     }
@@ -62,7 +62,7 @@ final class CoreTests: XCTestCase {
 
 private extension CoreTests {
 
-    static var expectedDymmyPackagefile = Packagefile(
+    static var expectedPackagefile = Packagefile(
         options: .init(
             swiftToolsVersion: "5.3",
             platforms: .init(
@@ -86,9 +86,9 @@ private extension CoreTests {
         ]
     )
 
-    static var expectedDymmyManifest = Manifest(
+    static var expectedManifest = Manifest(
         swiftToolsVersion: "5.3",
-        name: "CoreTests",
+        name: "Fixtures",
         platforms: .init(
             iOS: "v14",
             macOS: "v10_13"
@@ -96,9 +96,9 @@ private extension CoreTests {
         products: [
             .library(
                 .init(
-                    name: "CoreTests",
+                    name: "Fixtures",
                     targets: [
-                        "CoreTests"
+                        "Fixtures"
                     ],
                     linking: .auto
                 )
@@ -124,7 +124,7 @@ private extension CoreTests {
         ],
         targets: [
             .init(
-                name: "CoreTests",
+                name: "Fixtures",
                 dependencies: [
                     "PathKit",
                     "Yams"
