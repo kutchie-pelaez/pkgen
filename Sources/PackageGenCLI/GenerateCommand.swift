@@ -9,6 +9,6 @@ final class GenerateCommand: Command {
     let shortDescription = "Generates package files based on manifests"
 
     func execute() throws {
-        stdout.print(Configuration.configurationPath.string)
+
     }
 }
