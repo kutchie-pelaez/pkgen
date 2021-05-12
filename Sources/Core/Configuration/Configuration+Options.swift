@@ -4,7 +4,7 @@ extension Configuration {
 
     public struct Options: Decodable {
         public let swiftToolsVersion: String
-        public let platforms: [Platform]
+        public let platforms: Platforms
 
         // MARK: - Decodable
 
@@ -16,7 +16,7 @@ extension Configuration {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             swiftToolsVersion = try container.decode(String.self, forKey: .swiftToolsVersion)
-            platforms = (try? container.decode([Platform].self, forKey: .platforms)) ?? []
+            platforms = try container.decode(Platforms.self, forKey: .platforms)
         }
     }
 }

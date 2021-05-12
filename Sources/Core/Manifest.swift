@@ -5,7 +5,7 @@ import Foundation
 public struct Manifest: Decodable {
     public private(set) var swiftToolsVersion: String!
     public private(set) var name: String!
-    public private(set) var platforms: [Platform]!
+    public private(set) var platforms: Platforms!
     public private(set) var products: [Product]!
     private var rawStringDependencies: [String] = []
     public private(set) var dependencies: [Dependency]!
@@ -24,15 +24,6 @@ public struct Manifest: Decodable {
                 return lastPathComponent
             } else {
                 throw ManifestDecodingError.invalidPackagePath
-            }
-        }
-
-        let fallbackPlatforms = { () throws -> [Platform] in
-            let configurationPlatforms = configuration.options.platforms
-            if !configurationPlatforms.isEmpty {
-                return configurationPlatforms
-            } else {
-                throw ManifestDecodingError.noPlatformsSpecified
             }
         }
 
@@ -60,7 +51,7 @@ public struct Manifest: Decodable {
         }
 
         if manifest.platforms == nil {
-            manifest.platforms = try fallbackPlatforms()
+            manifest.platforms = configuration.options.platforms
         }
 
         if manifest.products == nil {
@@ -118,7 +109,7 @@ public struct Manifest: Decodable {
 
         swiftToolsVersion = try? container.decode(String.self, forKey: .swiftToolsVersion)
         name = try? container.decode(String.self, forKey: .name)
-        platforms = try? container.decode([Platform].self, forKey: .platforms)
+        platforms = try? container.decode(Platforms.self, forKey: .platforms)
         products = try? container.decode([Product].self, forKey: .products)
         products = try? container.decode([Product].self, forKey: .products)
         rawStringDependencies = (try? container.decode([String].self, forKey: .dependencies)) ?? []

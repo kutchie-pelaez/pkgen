@@ -33,6 +33,19 @@ final class AllTests: XCTestCase {
     }
 
     func testPackageFileGeneration(for module: FixtureProjectModule) {
-        
+        cleanGeneratedFiles(for: module)
+
+        let writer = PackageFileWriter(configurationPath: projectConfigPath)
+        do {
+            try writer.generate(manifestInputPath: module.manifestPath, packageOutputPath: module.packagePath)
+        } catch let error {
+            XCTAssert(false, error.localizedDescription)
+        }
+
+        cleanGeneratedFiles(for: module)
+    }
+
+    func cleanGeneratedFiles(for module: FixtureProjectModule) {
+
     }
 }

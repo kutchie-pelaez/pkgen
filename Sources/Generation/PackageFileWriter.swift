@@ -1,5 +1,6 @@
 import PathKit
 import Core
+import Foundation
 
 public final class PackageFileWriter {
 
@@ -23,6 +24,16 @@ public final class PackageFileWriter {
             at: manifestInputPath,
             with: configuration
         )
+
+        let generator = PackageGenerator(with: manifest)
+        let rawResult = try generator.generateRawPackageBasedOnManifest()
+        try writeRawStringToPackageFile(rawResult, at: packageOutputPath)
+    }
+
+    private func writeRawStringToPackageFile(_ string: String, at path: Path) throws {
+        guard let data = string.data(using: .utf8) else { throw PackageFileWriterError.invalidPackageData }
+        
+        try path.write(data)
     }
 
     // MARK: - Writing errors
@@ -30,5 +41,6 @@ public final class PackageFileWriter {
     public enum PackageFileWriterError: Error {
         case noConfigurationFileSpecified
         case noManifestFileSpecified
+        case invalidPackageData
     }
 }

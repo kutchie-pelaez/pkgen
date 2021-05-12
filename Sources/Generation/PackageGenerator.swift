@@ -10,12 +10,14 @@ final class PackageGenerator {
     }
 
     public func generateRawPackageBasedOnManifest() throws -> String {
-        fatalError()
+        Empty()
+            .swiftToolVersion(manifest.swiftToolsVersion)
+            .newLine
+            .newLine
+            .import("PackageDescription")
+            .newLine
+            .newLine
+
+            .string
     }
-
-    // MARK: - Generation errors
-
-//    public enum PackageGeneratorError: Error {
-//
-//    }
 }
