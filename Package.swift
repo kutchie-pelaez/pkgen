@@ -64,6 +64,10 @@ let package = Package(
             name: "CoreTests",
             dependencies: [
                 "Core"
+            ],
+            exclude: [
+                "dummy_package.yml",
+                "DummyPackagefile"
             ]
         )
     ]
