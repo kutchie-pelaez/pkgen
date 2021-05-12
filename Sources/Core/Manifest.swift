@@ -19,26 +19,18 @@ public struct Manifest: Decodable {
 
         // Fallback accessors
 
-        let fallbackName = { () throws -> String in
-            if let lastPathComponent = path.components.last {
-                return lastPathComponent
-            } else {
-                throw ManifestDecodingError.invalidPackagePath
-            }
-        }
+        let fallbackName = path.parent().lastComponent
 
-        let fallbackProducts = { () throws -> [Product] in
-            let fallbackStaticLibrary = Product.library(
-                .init(name: try fallbackName(),
+        let fallbackProducts = [
+            Product.library(
+                .init(name: fallbackName,
                       targets: [
-                        try fallbackName()
+                        fallbackName
                       ],
-                      linking: .static
+                      linking: .auto
                 )
             )
-
-            return [fallbackStaticLibrary]
-        }
+        ]
 
         // Fallback nil properties
 
@@ -47,7 +39,7 @@ public struct Manifest: Decodable {
         }
 
         if manifest.name == nil {
-            manifest.name = try fallbackName()
+            manifest.name = fallbackName
         }
 
         if manifest.platforms == nil {
@@ -55,7 +47,7 @@ public struct Manifest: Decodable {
         }
 
         if manifest.products == nil {
-            manifest.products = try fallbackProducts()
+            manifest.products = fallbackProducts
         }
 
         // Find dependencies for package
@@ -78,19 +70,17 @@ public struct Manifest: Decodable {
 
         // Set targets after dependencies
 
-        let fallbackTargets = { () throws -> [Target] in
-            let fallbackTarget = Target(
-                name: try fallbackName(),
+        let fallbackTargets = [
+            Target(
+                name: fallbackName,
                 dependencies: [
-                    try fallbackName()
+                    fallbackName
                 ]
             )
-
-            return [fallbackTarget]
-        }
+        ]
 
         if manifest.targets == nil {
-            manifest.targets = try fallbackTargets()
+            manifest.targets = fallbackTargets
         }
 
         // Manifest is finally configured here

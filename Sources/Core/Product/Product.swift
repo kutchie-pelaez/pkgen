@@ -27,7 +27,7 @@ public enum Product: Decodable {
                let linkingFromString = Library.Linking(rawValue: linkingString) {
                 linking = linkingFromString
             } else {
-                linking = .static
+                linking = .auto
             }
             self = .library(.init(name: libraryName, targets: targets, linking: linking))
         } else {

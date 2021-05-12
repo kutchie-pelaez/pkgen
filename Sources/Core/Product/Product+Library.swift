@@ -10,6 +10,7 @@ extension Product {
         public enum Linking: String {
             case `static`
             case dynamic
+            case auto
 
             public enum LinkingDecodingError: Error {
                 case invalidLinkingType

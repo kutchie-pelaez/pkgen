@@ -11,11 +11,18 @@ final class PackageGenerator {
 
     public func generateRawPackageBasedOnManifest() throws -> String {
         Empty()
-            .swiftToolsVersion(manifest.swiftToolsVersion)
-            .newLine
-            .newLine
-            .import("PackageDescription")
-            .newLine
+            // Header & import
+            .swiftToolsVersion(manifest.swiftToolsVersion).newLines(2)
+            .import("PackageDescription").newLines(2)
+
+            // Core components
+            .packageDeclarationStart.newLine
+            .name(manifest.name, isLastArgument: false).newLine
+            .platforms(manifest.platforms, isLastArgument: false).newLine
+            .products(manifest.products, isLastArgument: false).newLine
+
+            // Ending
+            .parenthesis(type: .closed)
             .newLine
 
             .string
