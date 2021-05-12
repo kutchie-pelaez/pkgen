@@ -22,6 +22,7 @@ extension PrimitiveProtocol {
 
     var colon: PrimitiveProtocol { self.chain(Colon()) }
     func comment(_ comment: String) -> PrimitiveProtocol { self.chain(Comment(comment)) }
+    func dependencies(_ dependencies: [Dependency], isLastArgument: Bool = false) -> PrimitiveProtocol { self.chain(Dependencies(dependencies, isLastArgument: isLastArgument)) }
     func `import`(_ module: String) -> PrimitiveProtocol { self.chain(Import(module)) }
     func name(_ name: String, isLastArgument: Bool = false) -> PrimitiveProtocol { self.chain(Name(name, isLastArgument: isLastArgument)) }
     var newLine: PrimitiveProtocol { self.chain(NewLine(1)) }

@@ -20,6 +20,7 @@ final class PackageGenerator {
             .name(manifest.name, isLastArgument: false).newLine
             .platforms(manifest.platforms, isLastArgument: false).newLine
             .products(manifest.products, isLastArgument: false).newLine
+            .dependencies(manifest.dependencies, isLastArgument: false).newLine
 
             // Ending
             .parenthesis(type: .closed)

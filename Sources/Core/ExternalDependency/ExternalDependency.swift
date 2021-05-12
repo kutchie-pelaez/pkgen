@@ -23,7 +23,7 @@ public enum ExternalDependency: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         if let github = try? container.decode(String.self, forKey: .github) {
-            if let branch = try? container.decode(String.self, forKey: .github) {
+            if let branch = try? container.decode(String.self, forKey: .branch) {
                 self = .github(.init(path: github, route: .branch(branch)))
             } else if let from = try? container.decode(String.self, forKey: .from) {
                 self = .github(.init(path: github, route: .from(from)))
