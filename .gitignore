@@ -3,6 +3,6 @@
 .build
 .vscode
 Package.resolved
-/Tests/AllTests/FixtureProject/FixtureProject.xcworkspace/xcuserdata
-/Tests/AllTests/FixtureProject/FixtureProject.xcworkspace/xcshareddata
-/Tests/**/Package.swift
+DummyProject/DummyProject.xcworkspace/xcshareddata/
+DummyProject/DummyProject.xcworkspace/xcuserdata/
+DummyProject/**/Package.swift

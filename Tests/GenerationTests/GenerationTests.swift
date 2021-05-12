@@ -9,7 +9,7 @@ private let projectPath = Path(#file).parent().parent().parent() + "DummyProject
 private let packagefilePath = projectPath + "Packagefile"
 private var configuration: Configuration!
 
-// MARK: - Packages from test project
+// MARK: - All packages from dummy project
 
 enum Package: String, CaseIterable {
     case A, B, C, D
