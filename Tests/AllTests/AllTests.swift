@@ -43,8 +43,8 @@ private extension AllTests {
     func testPackageFileGeneration(for module: FixtureProjectModule) {
         cleanGeneratedFiles(for: module)
 
-        let writer = PackageFileWriter(configurationPath: projectConfigPath)
         do {
+            let writer = PackageFileWriter(configurationPath: projectConfigPath)
             try writer.generate(manifestInputPath: module.manifestPath, packageOutputPath: module.packagePath)
 
             let generatedPackageData = try module.packagePath.read()
