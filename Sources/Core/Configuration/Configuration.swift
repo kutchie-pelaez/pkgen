@@ -1,13 +1,13 @@
 import Foundation
 import Yams
 
-public struct Configuration: Decodable {
+public struct Packagefile: Decodable {
     public let options: Options
     public let externalDependencies: [ExternalDependency]
 
     public init(from data: Data) throws {
         let decoder = YAMLDecoder()
-        self = try decoder.decode(Configuration.self, from: data)
+        self = try decoder.decode(Packagefile.self, from: data)
     }
 
     // MARK: - Decodable

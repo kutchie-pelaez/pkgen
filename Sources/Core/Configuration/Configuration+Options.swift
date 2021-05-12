@@ -1,6 +1,6 @@
 import Foundation
 
-extension Configuration {
+extension Packagefile {
 
     public struct Options: Decodable {
         public let swiftToolsVersion: String

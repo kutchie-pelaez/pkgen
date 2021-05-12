@@ -3,25 +3,25 @@ import Core
 
 public final class PackageFileWriter {
 
-    private let configurationPath: Path
-    private func configuration() throws -> Configuration {
-        guard let configurationData = try? configurationPath.read() else { throw PackageFileWriterError.noConfigurationFileSpecified }
+    private let packagefilePath: Path
+    private func packagefile() throws -> Packagefile {
+        guard let packagefileData = try? packagefilePath.read() else { throw PackageFileWriterError.noPackagefileSpecified }
 
-        return try Configuration(from: configurationData)
+        return try Packagefile(from: packagefileData)
     }
 
-    public init(configurationPath: Path) {
-        self.configurationPath = configurationPath
+    public init(packagefilePath: Path) {
+        self.packagefilePath = packagefilePath
     }
 
     public func write(from manifestInputPath: Path, to packageOutputPath: Path) throws {
         guard let manifestData = try? manifestInputPath.read() else { throw PackageFileWriterError.noManifestFileSpecified }
 
-        let configuration = try configuration()
+        let packagefile = try packagefile()
         let manifest = try Manifest(
             from: manifestData,
             at: manifestInputPath,
-            with: configuration
+            with: packagefile
         )
 
         let generator = PackageGenerator(with: manifest)
@@ -39,7 +39,7 @@ public final class PackageFileWriter {
     // MARK: - Writing errors
 
     public enum PackageFileWriterError: Error {
-        case noConfigurationFileSpecified
+        case noPackagefileSpecified
         case noManifestFileSpecified
         case invalidPackageData
     }

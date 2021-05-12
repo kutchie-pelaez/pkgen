@@ -13,7 +13,7 @@ public struct Manifest: Decodable {
 
     public init(from data: Data,
                 at path: Path,
-                with configuration: Configuration) throws {
+                with packagefile: Packagefile) throws {
         let decoder = YAMLDecoder()
         var manifest = try decoder.decode(Manifest.self, from: data)
 
@@ -35,7 +35,7 @@ public struct Manifest: Decodable {
         // Fallback nil properties
 
         if manifest.swiftToolsVersion == nil {
-            manifest.swiftToolsVersion = configuration.options.swiftToolsVersion
+            manifest.swiftToolsVersion = packagefile.options.swiftToolsVersion
         }
 
         if manifest.name == nil {
@@ -43,7 +43,7 @@ public struct Manifest: Decodable {
         }
 
         if manifest.platforms == nil {
-            manifest.platforms = configuration.options.platforms
+            manifest.platforms = packagefile.options.platforms
         }
 
         if manifest.products == nil {
@@ -54,7 +54,7 @@ public struct Manifest: Decodable {
 
         var rawStringDependencies = manifest.rawStringDependencies
 
-        let externalDependencies = try configuration.externalDependencies
+        let externalDependencies = try packagefile.externalDependencies
             .filter { externalDependency in
                 let name = try externalDependency.name()
 

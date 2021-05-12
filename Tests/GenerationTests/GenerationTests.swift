@@ -7,7 +7,6 @@ import Core
 
 private let projectPath = Path(#file).parent().parent().parent() + "DummyProject"
 private let packagefilePath = projectPath + "Packagefile"
-private var configuration: Configuration!
 
 // MARK: - All packages from dummy project
 
@@ -25,15 +24,6 @@ enum Package: String, CaseIterable {
 
 final class GenerationTests: XCTestCase {
 
-    func testConfigurationParsing() {
-        do {
-            let configData = try packagefilePath.read()
-            configuration = try Configuration(from: configData)
-        } catch let error {
-            XCTAssert(false, error.localizedDescription)
-        }
-    }
-
     func testModuleAPackageFileGeneration() { testPackageFileGeneration(for: .A) }
     func testModuleBPackageFileGeneration() { testPackageFileGeneration(for: .B) }
     func testModuleCPackageFileGeneration() { testPackageFileGeneration(for: .C) }
@@ -46,7 +36,7 @@ private extension GenerationTests {
 
     func testPackageFileGeneration(for package: Package) {
         do {
-            let writer = PackageFileWriter(configurationPath: packagefilePath)
+            let writer = PackageFileWriter(packagefilePath: packagefilePath)
             try writer.write(from: package.manifestPath, to: package.packagePath)
 
             let generatedPackageData = try package.packagePath.read()
