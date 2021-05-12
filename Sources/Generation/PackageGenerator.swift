@@ -10,23 +10,43 @@ final class PackageGenerator {
     }
 
     public func generateRawPackageBasedOnManifest() throws -> String {
-        Empty()
-            // Header & import
-            .swiftToolsVersion(manifest.swiftToolsVersion).newLines(2)
-            .import("PackageDescription").newLines(2)
+        let header = SwiftToolsVersion(manifest.swiftToolsVersion)
+            .newLines(2)
+            .import("PackageDescription")
+            .newLines(2)
 
-            // Core components
-            .packageDeclarationStart.newLine
-            .name(manifest.name, isLastArgument: false).newLine
-            .platforms(manifest.platforms, isLastArgument: false).newLine
-            .products(manifest.products, isLastArgument: false).newLine
-            .dependencies(manifest.dependencies, isLastArgument: false).newLine
-            .targets(manifest.targets, isLastArgument: true).newLine
-
-            // Ending
-            .parenthesis(type: .closed)
+        let packageDeclartion = PackageDeclarationStart()
             .newLine
 
+        let name = Name(manifest.name, isLastArgument: false)
+            .indented(with: .tab)
+            .newLine
+
+        let platforms = Platforms(manifest.platforms, isLastArgument: false)
+            .indented(with: .tab)
+            .newLine
+
+        let products = Products(manifest.products, isLastArgument: false)
+            .indented(with: .tab)
+            .newLine
+
+        let dependencies = Dependencies(manifest.dependencies, isLastArgument: false)
+            .indented(with: .tab)
+            .newLine
+
+        let targets = Targets(manifest.targets, isLastArgument: true)
+            .indented(with: .tab)
+            .newLine
+
+        return header
+            .chain(packageDeclartion)
+            .chain(name)
+            .chain(platforms)
+            .chain(products)
+            .chain(dependencies)
+            .chain(targets)
+            .parenthesis(type: .closed)
+            .newLine
             .string
     }
 }

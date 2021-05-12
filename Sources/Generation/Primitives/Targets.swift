@@ -16,20 +16,20 @@ struct Targets: PrimitiveProtocol {
 
         for dependency in target.dependencies {
             if dependenciesRawString.isEmpty {
-                dependenciesRawString.append("\ndependencies: [\n")
+                dependenciesRawString.append("\n    dependencies: [\n")
             } else {
                 dependenciesRawString.append(",\n")
             }
-            dependenciesRawString.append(".product(name: \"\(dependency)\", package: \"\(dependency)\")")
+            dependenciesRawString.append("        .product(name: \"\(dependency)\", package: \"\(dependency)\")")
         }
         if !dependenciesRawString.isEmpty {
-            dependenciesRawString.append("\n],")
+            dependenciesRawString.append("\n    ],")
         }
 
         return """
         .target(
-        name: \"\(target.name)\",\(dependenciesRawString)
-        path: \"Sources\"
+            name: \"\(target.name)\",\(dependenciesRawString)
+            path: \"Sources\"
         )
         """
     }
@@ -46,6 +46,8 @@ struct Targets: PrimitiveProtocol {
         }
 
         return result
+            .indented(with: .tab)
+            .string
     }
 
     var string: String {

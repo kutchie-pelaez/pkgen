@@ -43,7 +43,7 @@ struct Platforms: PrimitiveProtocol {
     var string: String {
         """
         platforms: [
-        \(body)
+            \(body)
         ]\(isLastArgument ? "" : ",")
         """
     }

@@ -31,12 +31,16 @@ struct Products: PrimitiveProtocol {
         ]
         )
         """
+            .indented(with: .tab)
+            .string
     }
 
     private func libraryString(from library: Product.Library) -> String {
         let rawTargets = library.targets
             .map { "\"\($0)\"" }
             .joined(separator: ",\n")
+            .indented(with: .tab)
+            .string
 
         let libraryLinking: String
         switch library.linking {
@@ -47,12 +51,14 @@ struct Products: PrimitiveProtocol {
 
         return """
         .library(
-        name: \"\(library.name)\",\(libraryLinking)
-        targets: [
-        \(rawTargets)
-        ]
+            name: \"\(library.name)\",\(libraryLinking)
+            targets: [
+            \(rawTargets)
+            ]
         )
         """
+            .indented(with: .tab)
+            .string
     }
 
     private var body: String {

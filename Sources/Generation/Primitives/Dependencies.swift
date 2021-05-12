@@ -50,6 +50,8 @@ struct Dependencies: PrimitiveProtocol {
         }
 
         return result
+            .indented(with: .tab)
+            .string
     }
 
     var string: String {

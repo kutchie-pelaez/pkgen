@@ -1,4 +1,4 @@
-// swift-tools-version:5.3.0
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -28,7 +28,7 @@ let package = Package(
                 .product(name: "ModuleA", package: "ModuleA"),
                 .product(name: "ModuleB", package: "ModuleB")
             ],
-            path: "ModuleC"
+            path: "Sources"
         )
     ]
 )

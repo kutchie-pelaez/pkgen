@@ -35,4 +35,26 @@ extension PrimitiveProtocol {
     func swiftToolsVersion(_ version: String) -> PrimitiveProtocol { self.chain(SwiftToolsVersion(version)) }
     var tab: PrimitiveProtocol { self.chain(Tab()) }
     func targets(_ targets: [Target], isLastArgument: Bool = false) -> PrimitiveProtocol { self.chain(Targets(targets, isLastArgument: isLastArgument)) }
+
+    func indented(with indentation: Indentation) -> PrimitiveProtocol {
+        self.string
+            .split(separator: "\n")
+            .map { indentation.string + $0 }
+            .joined(separator: "\n")
+    }
+}
+
+enum Indentation {
+    case spaces(Int)
+    case tabs(Int)
+
+    static let space = Indentation.spaces(1)
+    static let tab = Indentation.tabs(1)
+
+    var string: String {
+        switch self {
+        case let .spaces(count): return Array(repeating: " ", count: count).joined()
+        case let .tabs(count):  return Array(repeating: "    ", count: count).joined()
+        }
+    }
 }
