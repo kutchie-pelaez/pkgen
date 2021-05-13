@@ -6,10 +6,10 @@ import Rainbow
 
 final class GenerateCommand {
 
+    private let start = CFAbsoluteTimeGetCurrent()
+
     @Flag("-q", "--quietly", description: "Completly disable logs")
     var quietly: Bool
-
-    private let startDate = Date()
 
     // MARK: - Routable
 
@@ -37,9 +37,9 @@ extension GenerateCommand: Command {
 private extension GenerateCommand {
 
     var milisecondsPassed: Int {
-        let timeIntervalSinceStartDate = Date().timeIntervalSince(startDate)
+        let diff = CFAbsoluteTimeGetCurrent() - start
 
-        return Int(timeIntervalSinceStartDate * 1000)
+        return Int(diff * 1000)
     }
 
     var packagefilePath: Path {
