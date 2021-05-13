@@ -68,7 +68,7 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "CoreTests",
+            name: "CoreModelsTests",
             dependencies: [
                 "Core"
             ]
