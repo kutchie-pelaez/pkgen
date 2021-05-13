@@ -7,9 +7,14 @@ import Rainbow
 final class GenerateCommand {
 
     private let start = CFAbsoluteTimeGetCurrent()
+    private let cache = Cache()
+    private var successfullyGeneratedPackagePaths = [Path]()
 
     @Flag("-q", "--quietly", description: "Completly disable logs")
     var quietly: Bool
+
+    @Flag("--use-cache", description: "Generate packages only if package.yml or Packagefile was changed")
+    var useCache: Bool
 
     // MARK: - Routable
 
@@ -28,7 +33,21 @@ extension GenerateCommand: Command {
             packagefilePath: packagefilePath
         )
 
-        stdout("\n✅ Finished in \(milisecondsPassed) ms".cyan)
+        if useCache &&
+           !successfullyGeneratedPackagePaths.isEmpty {
+            do {
+                try cache.createCacheFile(from: successfullyGeneratedPackagePaths)
+                stdout("\n✅ Cache successfully updated at \(cache.path)".green)
+            } catch let error {
+                stdout("\nFailed to write cache, error: \(error.localizedDescription)".red)
+            }
+        }
+
+        if successfullyGeneratedPackagePaths.isEmpty {
+            stdout("Nothing changed since last generation\n")
+        } else {
+            stdout("\nFinished in \(milisecondsPassed) ms\n")
+        }
     }
 }
 
@@ -46,10 +65,10 @@ private extension GenerateCommand {
         .current + "Packagefile"
     }
 
-    func stdout(_ content: String) {
+    func stdout(_ content: String, terminator: String = "\n") {
         guard !quietly else { return }
 
-        stdout.print(content)
+        stdout.print(content, terminator: terminator)
     }
 
     func checkPathAndGoDeeperIfNeeded(_ path: Path, packagefilePath: Path) throws {
@@ -67,7 +86,10 @@ private extension GenerateCommand {
     }
 
     func generatePackageFileIfNeeded(manifestPath: Path, packagefilePath: Path) throws {
-        guard manifestPath.isFile && manifestPath.lastComponent == "package.yml" else { return }
+        guard (!useCache || !cache.isFileSameSinceLastGeneration(at: manifestPath)) &&
+              manifestPath.isFile && manifestPath.lastComponent == "package.yml" else {
+            return
+        }
 
         let packageOutputPath = manifestPath.parent() + "Package.swift"
         let currentPathString = Path.current.string
@@ -78,8 +100,9 @@ private extension GenerateCommand {
         let writer = PackageFileWriter(packagefilePath: packagefilePath)
         do {
             try writer.write(manifestPath: manifestPath, packageOutputPath: packageOutputPath)
+            successfullyGeneratedPackagePaths.append(manifestPath)
         } catch let error {
-            stdout("Failed to generate package file at \(relativePackageOutputPath)...".red)
+            stdout("\nFailed to generate package file at \(relativePackageOutputPath)...".red)
             throw error
         }
     }
