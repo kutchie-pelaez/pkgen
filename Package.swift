@@ -52,24 +52,25 @@ let package = Package(
             ]
         ),
         .testTarget(
+            name: "PackageGenCLITests",
+            dependencies: [
+                "PackageGenCLI",
+                "Core",
+                "PathKit"
+            ]
+        ),
+        .testTarget(
             name: "CodeGenerationTests",
             dependencies: [
                 "CodeGeneration",
                 "Core",
                 "PathKit"
-            ],
-            exclude: [
-                "TestProject"
             ]
         ),
         .testTarget(
             name: "CoreTests",
             dependencies: [
                 "Core"
-            ],
-            exclude: [
-                "dummy_package.yml",
-                "DummyPackagefile"
             ]
         )
     ]
