@@ -1,20 +1,56 @@
 import SwiftCLI
 import PathKit
 import CodeGeneration
+import Foundation
+import Rainbow
 
-final class GenerateCommand: Command {
+final class GenerateCommand {
+
+    @Flag("-q", "--quietly", description: "Completly disable logs")
+    var quietly: Bool
+
+    private let startDate = Date()
+
+    // MARK: - Routable
 
     let name = "generate"
-    let shortDescription = "Generates package files based on manifests"
 
-    private let packagefilePath: Path = .current + "Packagefile"
+    let shortDescription = "Generates package files based on manifests"
+}
+
+// MARK: - Command
+
+extension GenerateCommand: Command {
 
     func execute() throws {
-        try checkPathAndGoDeeperIfNeeded(.current, packagefilePath: packagefilePath)
+        try checkPathAndGoDeeperIfNeeded(
+            .current,
+            packagefilePath: packagefilePath
+        )
+
+        stdout("\n✅ Finished in \(milisecondsPassed) ms".cyan)
     }
 }
 
+// MARK: - Private
+
 private extension GenerateCommand {
+
+    var milisecondsPassed: Int {
+        let timeIntervalSinceStartDate = Date().timeIntervalSince(startDate)
+
+        return Int(timeIntervalSinceStartDate * 1000)
+    }
+
+    var packagefilePath: Path {
+        .current + "Packagefile"
+    }
+
+    func stdout(_ content: String) {
+        guard !quietly else { return }
+
+        stdout.print(content)
+    }
 
     func checkPathAndGoDeeperIfNeeded(_ path: Path, packagefilePath: Path) throws {
         guard path.isDirectory else { return }
@@ -25,16 +61,26 @@ private extension GenerateCommand {
             if child.isDirectory {
                 try checkPathAndGoDeeperIfNeeded(child, packagefilePath: packagefilePath)
             } else if child.isFile {
-                try generatePackageFileIfNeeded(at: child, packagefilePath: packagefilePath)
+                try generatePackageFileIfNeeded(manifestPath: child, packagefilePath: packagefilePath)
             }
         }
     }
 
-    func generatePackageFileIfNeeded(at path: Path, packagefilePath: Path) throws {
-        guard path.isFile && path.lastComponent == "package.yml" else { return }
+    func generatePackageFileIfNeeded(manifestPath: Path, packagefilePath: Path) throws {
+        guard manifestPath.isFile && manifestPath.lastComponent == "package.yml" else { return }
 
-        let packagePath = path.parent() + "Package.swift"
+        let packageOutputPath = manifestPath.parent() + "Package.swift"
+        let currentPathString = Path.current.string
+        let relativePackageOutputPath = Path(packageOutputPath.string.replacingOccurrences(of: currentPathString, with: ""))
+
+        stdout("Generating package at \(relativePackageOutputPath)...".lightYellow)
+
         let writer = PackageFileWriter(packagefilePath: packagefilePath)
-        try writer.write(manifestPath: path, packageOutputPath: packagePath)
+        do {
+            try writer.write(manifestPath: manifestPath, packageOutputPath: packageOutputPath)
+        } catch let error {
+            stdout("Failed to generate package file at \(relativePackageOutputPath)...".red)
+            throw error
+        }
     }
 }

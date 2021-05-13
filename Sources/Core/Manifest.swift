@@ -11,12 +11,21 @@ public struct Manifest: Decodable, Equatable {
     public private(set) var dependencies: [Dependency]!
     public private(set) var targets: [Target]!
 
-    public init(swiftToolsVersion: String,
-                name: String,
-                platforms: Platforms,
-                products: [Product],
-                dependencies: [Dependency],
-                targets: [Target]) {
+    static let empty = Manifest(
+        swiftToolsVersion: nil,
+        name: nil,
+        platforms: nil,
+        products: nil,
+        dependencies: nil,
+        targets: nil
+    )
+
+    public init(swiftToolsVersion: String?,
+                name: String?,
+                platforms: Platforms?,
+                products: [Product]?,
+                dependencies: [Dependency]?,
+                targets: [Target]?) {
         self.swiftToolsVersion = swiftToolsVersion
         self.name = name
         self.platforms = platforms
@@ -29,7 +38,27 @@ public struct Manifest: Decodable, Equatable {
                 at path: Path,
                 with packagefile: Packagefile) throws {
         let decoder = YAMLDecoder()
-        var manifest = try decoder.decode(Manifest.self, from: data)
+
+        var manifest: Manifest = .empty
+        if let decodedManifest = try? decoder.decode(Manifest.self, from: data) {
+            manifest = decodedManifest
+        } else if let rawDataStrig = String(data: data, encoding: .utf8) {
+            let trimmedString = rawDataStrig
+                .split(separator: "\n")
+                .filter { line in !line.hasPrefix("#") }
+                .joined(separator: "\n")
+                .trimmingCharacters(in: [" ", "\n"])
+
+            if trimmedString.isEmpty {
+                // When manifest file is empty (set all field as default)
+                manifest = .empty
+            } else {
+                throw ManifestDecodingError.invalidPackageFileData
+            }
+            // When manifest file is empty (set all field as default)
+        } else {
+            throw ManifestDecodingError.invalidPackageFileData
+        }
 
         // Fallback accessors
 
@@ -138,5 +167,6 @@ public struct Manifest: Decodable, Equatable {
         case invalidPackagePath
         case noPlatformsSpecified
         case invalidDependencyName
+        case invalidPackageFileData
     }
 }
