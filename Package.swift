@@ -19,13 +19,23 @@ let package = Package(
         .package(url: "https://github.com/kylef/PathKit.git", from: "1.0.0"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0"),
         .package(url: "https://github.com/jakeheis/SwiftCLI.git", from: "6.0.0"),
-        .package(url: "https://github.com/onevcat/Rainbow", .upToNextMajor(from: "4.0.0"))
+        .package(url: "https://github.com/onevcat/Rainbow.git", .upToNextMajor(from: "4.0.0")),
+        .package(url: "https://github.com/SwiftDocOrg/GraphViz.git", from: "0.4.1")
     ],
     targets: [
         .target(
             name: "PackageGen",
             dependencies: [
                 "PackageGenCLI"
+            ]
+        ),
+        .target(
+            name: "GraphKit",
+            dependencies: [
+                "Core",
+                "PathKit",
+                "Rainbow",
+                "GraphViz"
             ]
         ),
         .target(
