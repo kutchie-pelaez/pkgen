@@ -1,0 +1,11 @@
+swiftToolsVersion: '5.3'
+name: FullPackage
+platforms:
+  iOS: v14
+  macOS: v10_13
+products:
+  - 
+dependencies:
+  -
+targets:
+  -
