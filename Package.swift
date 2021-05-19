@@ -49,11 +49,11 @@ let targets: [Target] = [
             "SwiftCLI",
             "PathKit",
             "Rainbow",
-            "GraphKit"
+            "GraphGenerator"
         ]
     ),
     .target(
-        name: "GraphKit",
+        name: "GraphGenerator",
         dependencies: [
             "Core",
             "PathKit",

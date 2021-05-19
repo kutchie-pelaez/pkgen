@@ -1,5 +1,5 @@
 import SwiftCLI
-import GraphKit
+import GraphGenerator
 import PathKit
 import Rainbow
 
