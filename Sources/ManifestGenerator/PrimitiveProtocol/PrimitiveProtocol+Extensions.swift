@@ -44,7 +44,7 @@ extension PrimitiveProtocol {
     }
 
     var newLine: PrimitiveProtocol {
-        chain(NewLine(1))
+       newLines(1)
     }
 
     func parenthesis(type parenthesisType: Parenthesis.ParenthesisType) -> PrimitiveProtocol {

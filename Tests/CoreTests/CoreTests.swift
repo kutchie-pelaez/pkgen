@@ -11,7 +11,7 @@ private var manifest: Manifest!
 
 // MARK: - Tests
 
-final class CoreModelsTests: XCTestCase {
+final class CoreTests: XCTestCase {
 
     func test1_packagefileParsing() {
         do {
@@ -60,7 +60,7 @@ final class CoreModelsTests: XCTestCase {
 
 // MARK: - Private
 
-private extension CoreModelsTests {
+private extension CoreTests {
 
     static var expectedPackagefile = Packagefile(
         options: .init(

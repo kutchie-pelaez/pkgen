@@ -8,7 +8,8 @@ public final class PackageGenCLI {
             name: "pkgen",
             version: "0.0.0",
             commands: [
-                GenerateCommand()
+                GenerateCommand(),
+                GraphCommand()
             ]
         )
 

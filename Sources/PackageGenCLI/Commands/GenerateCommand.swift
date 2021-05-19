@@ -1,6 +1,6 @@
 import SwiftCLI
 import PathKit
-import CodeGeneration
+import ManifestGenerator
 import Foundation
 import Rainbow
 

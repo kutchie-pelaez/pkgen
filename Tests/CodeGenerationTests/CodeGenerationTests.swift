@@ -1,4 +1,4 @@
-@testable import CodeGeneration
+@testable import ManifestGenerator
 import XCTest
 import PathKit
 import Core
@@ -22,7 +22,7 @@ enum Package: String, CaseIterable {
 
 // MARK: - Tests
 
-final class GenerationTests: XCTestCase {
+final class ManifestGeneratorTests: XCTestCase {
 
     func test1_moduleAPackageFileGeneration() { testPackageFileGeneration(for: .A) }
     func test2_moduleBPackageFileGeneration() { testPackageFileGeneration(for: .B) }
@@ -32,7 +32,7 @@ final class GenerationTests: XCTestCase {
 
 // MARK: - Private
 
-private extension GenerationTests {
+private extension ManifestGeneratorTests {
 
     func testPackageFileGeneration(for package: Package) {
         do {
