@@ -25,13 +25,13 @@ extension Manifest: Decodable {
         self.decodedName = decodedName
         self.name = decodedName ?? ""
 
-        self.defaultLocalization = try? container.decode(String.self, forKey: .defaultLocalization) // TODO:
+        self.defaultLocalization = try? container.decode(String.self, forKey: .defaultLocalization)
 
         self.platforms = try? container.decode(Platforms.self, forKey: .platforms)
 
-        self.pkgConfig = try? container.decode(String.self, forKey: .pkgConfig) // TODO:
+        self.pkgConfig = try? container.decode(String.self, forKey: .pkgConfig)
 
-        self.providers = try? container.decode([String].self, forKey: .providers) // TODO:
+        self.providers = try? container.decode([PackageProvider].self, forKey: .providers)
 
         // If not provided init(from:at:with:) will
         // generate one product with package name

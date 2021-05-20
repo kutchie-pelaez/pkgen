@@ -38,14 +38,14 @@ private extension ManifestGenerator {
 
     var name: PrimitiveProtocol {
         PropertyDeclaration(name: "name", type: "String")
-            .chain(manifest.name)
+            .string(manifest.name)
             .newLines(2)
     }
 
     var defaultLocalization: PrimitiveProtocol {
         if let manifestDefaultLocalization = manifest.defaultLocalization {
             return PropertyDeclaration(name: "defaultLocalization", type: "LanguageTag")
-                .chain(manifestDefaultLocalization)
+                .string(manifestDefaultLocalization)
                 .newLines(2)
         } else {
             return Empty()
@@ -65,7 +65,7 @@ private extension ManifestGenerator {
     var pkgConfig: PrimitiveProtocol {
         if let manifestPKGConfig = manifest.pkgConfig {
             return PropertyDeclaration(name: "pkgConfig", type: "String")
-                .chain(manifestPKGConfig)
+                .string(manifestPKGConfig)
                 .newLines(2)
         } else {
             return Empty()
@@ -75,7 +75,7 @@ private extension ManifestGenerator {
     var providers: PrimitiveProtocol {
         if let manifestProviders = manifest.providers {
             return PropertyDeclaration(name: "providers", type: "[SystemPackageProvider]")
-                .chain("TODO")
+                .providers(manifestProviders)
                 .newLines(2)
         } else {
             return Empty()
@@ -179,7 +179,18 @@ let platforms: [SupportedPlatform] = [
 let pkgConfig: String = ""
 
 let providers: [SystemPackageProvider] = [
-
+    .apt(
+        [
+            "A",
+            "B"
+        ]
+    ),
+    .brew(
+        [
+            "A",
+            "B"
+        ]
+    )
 ]
 
 let products: [Product] = [

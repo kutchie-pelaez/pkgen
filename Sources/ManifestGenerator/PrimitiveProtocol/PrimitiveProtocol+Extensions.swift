@@ -10,29 +10,25 @@ extension PrimitiveProtocol {
         chain(Import(module))
     }
 
-    var packageDeclarationStart: PrimitiveProtocol {
-        chain(PackageDeclarationStart())
-    }
-
-    func name(_ name: String, isLastArgument: Bool) -> PrimitiveProtocol {
-        chain(Name(name, isLastArgument: isLastArgument))
-    }
-
     func platforms(_ platforms: Core.Platforms) -> PrimitiveProtocol {
         chain(Platforms(platforms))
     }
 
-    func products(_ products: [Product], isLastArgument: Bool) -> PrimitiveProtocol {
-        chain(Products(products, isLastArgument: isLastArgument))
+    func providers(_ providers: [PackageProvider]) -> PrimitiveProtocol {
+        chain(Providers(providers))
     }
 
-    func dependencies(_ dependencies: [Dependency], isLastArgument: Bool) -> PrimitiveProtocol {
-        chain(Dependencies(dependencies, isLastArgument: isLastArgument))
-    }
-
-    func targets(_ targets: [Target], isLastArgument: Bool) -> PrimitiveProtocol {
-        chain(Targets(targets, isLastArgument: isLastArgument))
-    }
+//    func products(_ products: [Product], isLastArgument: Bool) -> PrimitiveProtocol {
+//        chain(Products(products, isLastArgument: isLastArgument))
+//    }
+//
+//    func dependencies(_ dependencies: [Dependency], isLastArgument: Bool) -> PrimitiveProtocol {
+//        chain(Dependencies(dependencies, isLastArgument: isLastArgument))
+//    }
+//
+//    func targets(_ targets: [Target], isLastArgument: Bool) -> PrimitiveProtocol {
+//        chain(Targets(targets, isLastArgument: isLastArgument))
+//    }
 }
 
 // MARK: - Helper primitives
@@ -47,11 +43,15 @@ extension PrimitiveProtocol {
        newLines(1)
     }
 
+    func string(_ string: String) -> PrimitiveProtocol {
+        chain("\"\(string)\"")
+    }
+
     func parenthesis(type parenthesisType: Parenthesis.ParenthesisType) -> PrimitiveProtocol {
         chain(Parenthesis(parenthesisType))
     }
 
-    func propertyDeclaration(name: String, type: String? = nil, isMutable: Bool = false) {
+    func propertyDeclaration(name: String, type: String? = nil, isMutable: Bool = false) -> PrimitiveProtocol {
         chain(PropertyDeclaration(name: name, type: type, isMutable: isMutable))
     }
 

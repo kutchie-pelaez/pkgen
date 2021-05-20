@@ -6,10 +6,10 @@ extension Manifest {
 
     public init(swiftToolsVersion: String,
                 name: String,
-                defaultLocalization: String? = nil, // TODO:
+                defaultLocalization: String? = nil,
                 platforms: Platforms? = nil,
-                pkgConfig: String? = nil, // TODO:
-                providers: [Any]? = nil, // TODO:
+                pkgConfig: String? = nil,
+                providers: [PackageProvider]? = nil,
                 products: [Product] = [],
                 dependencies: [Dependency] = [],
                 targets: [Target] = [],
