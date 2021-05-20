@@ -25,10 +25,10 @@ extension PrimitiveProtocol {
     func dependencies(_ dependencies: [Dependency]) -> PrimitiveProtocol {
         chain(Dependencies(dependencies))
     }
-//
-//    func targets(_ targets: [Target], isLastArgument: Bool) -> PrimitiveProtocol {
-//        chain(Targets(targets, isLastArgument: isLastArgument))
-//    }
+
+    func targets(_ targets: [Target]) -> PrimitiveProtocol {
+        chain(Targets(targets))
+    }
 }
 
 // MARK: - Helper primitives

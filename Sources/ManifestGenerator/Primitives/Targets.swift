@@ -3,10 +3,8 @@ import Core
 struct Targets: PrimitiveProtocol {
 
     private let targets: [Target]
-    private let isLastArgument: Bool
 
-    init(_ targets: [Target],
-         isLastArgument: Bool) {
+    init(_ targets: [Target]) {
         self.targets = targets
         self.isLastArgument = isLastArgument
     }
@@ -52,9 +50,9 @@ struct Targets: PrimitiveProtocol {
 
     var string: String {
         """
-        targets: [
+        [
         \(body)
-        ]\(isLastArgument ? "" : ",")
+        ]
         """
     }
 }

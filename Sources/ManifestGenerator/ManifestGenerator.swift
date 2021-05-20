@@ -105,7 +105,7 @@ private extension ManifestGenerator {
     var targets: PrimitiveProtocol {
         if let manifestTargets = manifest.targets {
             return PropertyDeclaration(name: "targets", type: "[Target]")
-                .chain("TODO")
+                .targets(manifestTargets)
                 .newLines(2)
         } else {
             return Empty()
