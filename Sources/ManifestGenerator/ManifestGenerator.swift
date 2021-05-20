@@ -85,7 +85,7 @@ private extension ManifestGenerator {
     var products: PrimitiveProtocol {
         if let manifestProducts = manifest.products {
             return PropertyDeclaration(name: "products", type: "[Product]")
-                .chain("TODO")
+                .products(manifestProducts)
                 .newLines(2)
         } else {
             return Empty()

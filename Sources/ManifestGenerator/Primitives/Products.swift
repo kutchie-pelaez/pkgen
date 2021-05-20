@@ -3,12 +3,9 @@ import Core
 struct Products: PrimitiveProtocol {
 
     private let products: [Product]
-    private let isLastArgument: Bool
 
-    init(_ products: [Product],
-         isLastArgument: Bool) {
+    init(_ products: [Product]) {
         self.products = products
-        self.isLastArgument = isLastArgument
     }
 
     private func productString(from product: Product) -> String {
@@ -69,6 +66,7 @@ struct Products: PrimitiveProtocol {
             if !result.isEmpty {
                 result.append(",\n")
             }
+            
             result.append(productString)
         }
 
@@ -77,9 +75,9 @@ struct Products: PrimitiveProtocol {
 
     var string: String {
         """
-        products: [
+        [
         \(body)
-        ]\(isLastArgument ? "" : ",")
+        ]
         """
     }
 }
