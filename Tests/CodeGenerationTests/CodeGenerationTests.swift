@@ -36,7 +36,7 @@ private extension ManifestGeneratorTests {
 
     func testPackageFileGeneration(for package: Package) {
         do {
-            let writer = PackageFileWriter(packagefilePath: packagefilePath)
+            let writer = ManifestWriter(packagefilePath: packagefilePath)
             try writer.write(manifestPath: package.manifestPath, packageOutputPath: package.packagePath)
 
             let generatedPackageData = try package.packagePath.read()

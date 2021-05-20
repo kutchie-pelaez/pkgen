@@ -97,7 +97,7 @@ private extension GenerateCommand {
 
         stdout("Generating package at \(relativePackageOutputPath)...".lightYellow)
 
-        let writer = PackageFileWriter(packagefilePath: packagefilePath)
+        let writer = ManifestWriter(packagefilePath: packagefilePath)
         do {
             try writer.write(manifestPath: manifestPath, packageOutputPath: packageOutputPath)
             successfullyGeneratedPackagePaths.append(manifestPath)
