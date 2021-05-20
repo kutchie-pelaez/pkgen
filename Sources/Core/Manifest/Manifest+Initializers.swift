@@ -10,9 +10,9 @@ extension Manifest {
                 platforms: Platforms? = nil,
                 pkgConfig: String? = nil,
                 providers: [PackageProvider]? = nil,
-                products: [Product] = [],
-                dependencies: [Dependency] = [],
-                targets: [Target] = [],
+                products: [Product]? = nil,
+                dependencies: [Dependency]? = nil,
+                targets: [Target]? = nil,
                 swiftLanguageVersions: [SwiftVersion]? = nil,
                 cLanguageStandard: CStandard? = nil,
                 cxxLanguageStandard: CXXStandard? = nil) {
@@ -60,7 +60,7 @@ extension Manifest {
         // swiftToolsVersion
         if manifest.decodedSwiftToolsVersion == nil {
             if let packagefileSwiftToolsVersion = packagefile.swiftToolsVersion {
-                manifest.decodedSwiftToolsVersion = packagefileSwiftToolsVersion
+                manifest.swiftToolsVersion = packagefileSwiftToolsVersion
             } else {
                 throw ManifestDecodingError.noSwiftToolsVersionSpecified
             }
@@ -113,7 +113,10 @@ extension Manifest {
             let externalDependencies = try packagefile.externalDependencies?
                 .filter { decodedDependencies.contains(try $0.name()) }
                 .map { Dependency.external($0) } ?? []
-            decodedDependencies.removeAll(where: { externalDependencies.compactMap { try? $0.name() }.contains($0) })
+            let externalDependenciesNames = externalDependencies
+                .map { try? $0.name() }
+                .compactMap { $0 }
+            decodedDependencies.removeAll(where: { externalDependenciesNames.contains($0) })
             let internalDependencies = decodedDependencies
                 .map { LocalDependency.path($0) }
                 .map { Dependency.local($0) }
@@ -126,29 +129,26 @@ extension Manifest {
             let fallbackTargets = [
                 Target(
                     name: name,
-                    dependencies: ["HEY"]
+                    dependencies: []
                 )
             ]
 
             manifest.targets = fallbackTargets
         }
 
-        // TODO: -
         // swiftLanguageVersions
         if manifest.swiftLanguageVersions == nil {
-
+            manifest.swiftLanguageVersions = packagefile.swiftLanguageVersions
         }
 
-        // TODO: -
         // cLanguageStandard
         if manifest.cLanguageStandard == nil {
-
+            manifest.cLanguageStandard = packagefile.cLanguageStandard
         }
 
-        // TODO: -
         // cxxLanguageStandard
         if manifest.cxxLanguageStandard == nil {
-
+            manifest.cxxLanguageStandard = packagefile.cxxLanguageStandard
         }
 
         self = manifest

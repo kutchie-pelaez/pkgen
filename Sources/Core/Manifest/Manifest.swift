@@ -9,9 +9,9 @@ public struct Manifest {
     public internal(set) var products: [Product]?
     public internal(set) var dependencies: [Dependency]?
     public internal(set) var targets: [Target]?
-    public internal(set) var swiftLanguageVersions: [SwiftVersion]? // TODO:
-    public internal(set) var cLanguageStandard: CStandard? // TODO:
-    public internal(set) var cxxLanguageStandard: CXXStandard? // TODO:
+    public internal(set) var swiftLanguageVersions: [SwiftVersion]? 
+    public internal(set) var cLanguageStandard: CStandard?
+    public internal(set) var cxxLanguageStandard: CXXStandard?
 
     internal var decodedSwiftToolsVersion: String?
     internal var decodedName: String?

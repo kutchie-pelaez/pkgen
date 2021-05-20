@@ -59,11 +59,17 @@ extension Manifest: Equatable {
 
     public static func == (lhs: Manifest, rhs: Manifest) -> Bool {
         lhs.swiftToolsVersion == rhs.swiftToolsVersion &&
-            lhs.name == rhs.name &&
-            lhs.platforms == rhs.platforms &&
-            lhs.products == rhs.products &&
-            lhs.dependencies == rhs.dependencies &&
-            lhs.targets == rhs.targets
+        lhs.name == rhs.name &&
+        lhs.defaultLocalization == rhs.defaultLocalization &&
+        lhs.platforms == rhs.platforms &&
+        lhs.pkgConfig == rhs.pkgConfig &&
+        lhs.providers == rhs.providers &&
+        lhs.products == rhs.products &&
+        lhs.dependencies == rhs.dependencies &&
+        lhs.targets == rhs.targets &&
+        lhs.swiftLanguageVersions == rhs.swiftLanguageVersions &&
+        lhs.cLanguageStandard == rhs.cLanguageStandard &&
+        lhs.cxxLanguageStandard == rhs.cxxLanguageStandard
     }
 }
 

@@ -17,7 +17,7 @@ private var emptyManifest: Manifest!
 
 final class CoreTests: XCTestCase {
 
-    // Packagefiles
+    // Packagefile
 
     func test1_packagefileParsing() {
         do {
@@ -236,19 +236,54 @@ private extension CoreTests {
     )
 
     static var expectedEmptyManifest = Manifest(
-        swiftToolsVersion: "",
-        name: "",
-        defaultLocalization: nil,
-        platforms: nil,
-        pkgConfig: nil,
-        providers: nil,
-        products: nil,
+        swiftToolsVersion: "5.3",
+        name: "Fixtures",
+        defaultLocalization: "en_US",
+        platforms: .init(
+            iOS: "v14",
+            macOS: "v10_13",
+            tvOS: "v14",
+            watchOS: "v7"
+        ),
+        pkgConfig: "pkg_config_value",
+        providers: [
+            .apt(
+                [
+                    "a",
+                    "b"
+                ]
+            ),
+            .brew(
+                [
+                    "c",
+                    "d"
+                ]
+            )
+        ],
+        products: [
+            .library(
+                .init(
+                    name: "Fixtures",
+                    targets: [
+                        "Fixtures"
+                    ],
+                    linking: .auto
+                )
+            )
+        ],
         dependencies: nil,
-        targets: nil,
-        swiftLanguageVersions: nil,
-        cLanguageStandard: nil,
-        cxxLanguageStandard: nil,
-        decodedSwiftToolsVersion: nil,
-        decodedName: nil
+        targets: [
+            .init(
+                name: "Fixtures",
+                dependencies: []
+            )
+        ],
+        swiftLanguageVersions: [
+            .v4,
+            .v4_2,
+            .v5
+        ],
+        cLanguageStandard: .c99,
+        cxxLanguageStandard: .cxx98
     )
 }
