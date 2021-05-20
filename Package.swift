@@ -2,17 +2,11 @@
 
 import PackageDescription
 
-// MARK: - Name
-
 let name: String = "PackageGen"
-
-// MARK: - Platforms
 
 let platforms: [SupportedPlatform] = [
     .macOS(.v10_13)
 ]
-
-// MARK: - Products
 
 let products: [Product] = [
     .executable(
@@ -23,8 +17,6 @@ let products: [Product] = [
     )
 ]
 
-// MARK: - Dependencies
-
 let dependencies: [Package.Dependency] = [
     .package(url: "https://github.com/kylef/PathKit.git", from: "1.0.0"),
     .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0"),
@@ -32,8 +24,6 @@ let dependencies: [Package.Dependency] = [
     .package(url: "https://github.com/onevcat/Rainbow.git", .upToNextMajor(from: "4.0.0")),
     .package(url: "https://github.com/SwiftDocOrg/GraphViz.git", from: "0.4.1")
 ]
-
-// MARK: - Targets
 
 let targets: [Target] = [
     .target(
@@ -101,10 +91,6 @@ let testTargets: [Target] = [
         ]
     )
 ]
-
-// MARK: - Package
-
-//let p = Package(name: <#T##String#>, defaultLocalization: LanguageTag?, platforms: <#T##[SupportedPlatform]?#>, pkgConfig: <#T##String?#>, providers: <#T##[SystemPackageProvider]?#>, products: <#T##[Product]#>, dependencies: <#T##[Package.Dependency]#>, targets: <#T##[Target]#>, swiftLanguageVersions: <#T##[SwiftVersion]?#>, cLanguageStandard: <#T##CLanguageStandard?#>, cxxLanguageStandard: <#T##CXXLanguageStandard?#>)
 
 let package = Package(
     name: name,
