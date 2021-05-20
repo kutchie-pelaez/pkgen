@@ -45,7 +45,7 @@ extension Manifest: Decodable {
         // generate one target with package name
         self.targets = try? container.decode([Target].self, forKey: .targets)
 
-        self.swiftLanguageVersions = try? container.decode([String].self, forKey: .swiftLanguageVersions) // TODO:
+        self.swiftLanguageVersions = try? container.decode([SwiftVersion].self, forKey: .swiftLanguageVersions)
 
         self.cLanguageStandard = try? container.decode(String.self, forKey: .cLanguageStandard) // TODO:
 

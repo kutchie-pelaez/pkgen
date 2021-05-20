@@ -13,7 +13,7 @@ extension Manifest {
                 products: [Product] = [],
                 dependencies: [Dependency] = [],
                 targets: [Target] = [],
-                swiftLanguageVersions: [Any]? = nil, // TODO:
+                swiftLanguageVersions: [SwiftVersion]? = nil, // TODO:
                 cLanguageStandard: Any? = nil, // TODO:
                 cxxLanguageStandard: Any? = nil) { // TODO:
         self.swiftToolsVersion = swiftToolsVersion

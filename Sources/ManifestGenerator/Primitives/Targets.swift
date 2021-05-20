@@ -6,7 +6,6 @@ struct Targets: PrimitiveProtocol {
 
     init(_ targets: [Target]) {
         self.targets = targets
-        self.isLastArgument = isLastArgument
     }
 
     private func targetSting(for target: Target) -> String {

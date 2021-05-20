@@ -29,6 +29,10 @@ extension PrimitiveProtocol {
     func targets(_ targets: [Target]) -> PrimitiveProtocol {
         chain(Targets(targets))
     }
+
+    func swiftLanguageVersions(_ swiftVersions: [SwiftVersion]) -> PrimitiveProtocol {
+        chain(SwiftLanguageVersions(swiftVersions))
+    }
 }
 
 // MARK: - Helper primitives

@@ -115,7 +115,7 @@ private extension ManifestGenerator {
     var swiftLanguageVersions: PrimitiveProtocol {
         if let manifestSwiftLanguageVersions = manifest.swiftLanguageVersions {
             return PropertyDeclaration(name: "swiftLanguageVersions", type: "[SwiftVersion]")
-                .chain("TODO")
+                .swiftLanguageVersions(manifestSwiftLanguageVersions)
                 .newLines(2)
         } else {
             return Empty()
@@ -275,7 +275,9 @@ let targets: [Target] = [
 ]
 
 let swiftLanguageVersions: [SwiftVersion] = [
-
+    .v4,
+    .v4_2,
+    .v5
 ]
 
 let cLanguageStandard: CLanguageStandard = .c11
