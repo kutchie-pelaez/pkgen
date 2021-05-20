@@ -67,7 +67,9 @@ private extension CoreTests {
             swiftToolsVersion: "5.3",
             platforms: .init(
                 iOS: "v14",
-                macOS: "v10_13"
+                macOS: "v10_13",
+                tvOS: "???",
+                watchOS: "???"
             )
         ),
         externalDependencies: [
@@ -91,7 +93,9 @@ private extension CoreTests {
         name: "Fixtures",
         platforms: .init(
             iOS: "v14",
-            macOS: "v10_13"
+            macOS: "v10_13",
+            tvOS: "???",
+            watchOS: "???"
         ),
         products: [
             .library(

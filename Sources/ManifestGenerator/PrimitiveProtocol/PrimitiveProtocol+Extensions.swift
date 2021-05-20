@@ -18,8 +18,8 @@ extension PrimitiveProtocol {
         chain(Name(name, isLastArgument: isLastArgument))
     }
 
-    func platforms(_ platforms: Core.Platforms, isLastArgument: Bool) -> PrimitiveProtocol {
-        chain(Platforms(platforms, isLastArgument: isLastArgument))
+    func platforms(_ platforms: Core.Platforms) -> PrimitiveProtocol {
+        chain(Platforms(platforms))
     }
 
     func products(_ products: [Product], isLastArgument: Bool) -> PrimitiveProtocol {

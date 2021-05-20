@@ -2,7 +2,7 @@ public struct Manifest {
 
     public internal(set) var swiftToolsVersion: String
     public internal(set) var name: String
-    public internal(set) var defaultLocalization: Any? // TODO:
+    public internal(set) var defaultLocalization: String? // TODO:
     public internal(set) var platforms: Platforms?
     public internal(set) var pkgConfig: Any? // TODO:
     public internal(set) var providers: [Any]? // TODO:

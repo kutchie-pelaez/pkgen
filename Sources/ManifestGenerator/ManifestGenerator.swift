@@ -45,7 +45,7 @@ private extension ManifestGenerator {
     var defaultLocalization: PrimitiveProtocol {
         if let manifestDefaultLocalization = manifest.defaultLocalization {
             return PropertyDeclaration(name: "defaultLocalization", type: "LanguageTag")
-                .chain("TODO")
+                .chain(manifestDefaultLocalization)
                 .newLines(2)
         } else {
             return Empty()
@@ -55,7 +55,7 @@ private extension ManifestGenerator {
     var platforms: PrimitiveProtocol {
         if let manifestPlatforms = manifest.platforms {
             return PropertyDeclaration(name: "platforms", type: "[SupportedPlatform]")
-                .chain("TODO")
+                .platforms(manifestPlatforms)
                 .newLines(2)
         } else {
             return Empty()

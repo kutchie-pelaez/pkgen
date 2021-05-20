@@ -6,7 +6,7 @@ extension Manifest {
 
     public init(swiftToolsVersion: String,
                 name: String,
-                defaultLocalization: Any? = nil, // TODO:
+                defaultLocalization: String? = nil, // TODO:
                 platforms: Platforms? = nil,
                 pkgConfig: Any? = nil, // TODO:
                 providers: [Any]? = nil, // TODO:
