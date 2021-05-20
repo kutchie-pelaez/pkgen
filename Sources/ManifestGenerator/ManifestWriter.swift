@@ -26,7 +26,7 @@ public final class PackageFileWriter {
         )
 
         let generator = ManifestGenerator(with: manifest)
-        let rawResult = try generator.generateRawPackageBasedOnManifest()
+        let rawResult = generator.generateRawPackageString()
 
         try writeRawStringToPackageFile(rawResult, at: packageOutputPath)
     }

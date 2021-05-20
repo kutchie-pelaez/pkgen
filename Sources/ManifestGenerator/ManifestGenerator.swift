@@ -8,7 +8,7 @@ final class ManifestGenerator {
         self.manifest = manifest
     }
 
-    public func generateRawPackageBasedOnManifest() throws -> String {
+    public func generateRawPackageString() -> String {
         header
             .chain(name)
             .chain(defaultLocalization)
