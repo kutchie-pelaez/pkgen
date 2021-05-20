@@ -95,7 +95,7 @@ private extension ManifestGenerator {
     var dependencies: PrimitiveProtocol {
         if let manifestDependencies = manifest.dependencies {
             return PropertyDeclaration(name: "dependencies", type: "[Package.Dependency]")
-                .chain("TODO")
+                .dependencies(manifestDependencies)
                 .newLines(2)
         } else {
             return Empty()

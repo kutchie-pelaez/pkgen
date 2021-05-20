@@ -21,10 +21,10 @@ extension PrimitiveProtocol {
     func products(_ products: [Product]) -> PrimitiveProtocol {
         chain(Products(products))
     }
-//
-//    func dependencies(_ dependencies: [Dependency], isLastArgument: Bool) -> PrimitiveProtocol {
-//        chain(Dependencies(dependencies, isLastArgument: isLastArgument))
-//    }
+
+    func dependencies(_ dependencies: [Dependency]) -> PrimitiveProtocol {
+        chain(Dependencies(dependencies))
+    }
 //
 //    func targets(_ targets: [Target], isLastArgument: Bool) -> PrimitiveProtocol {
 //        chain(Targets(targets, isLastArgument: isLastArgument))

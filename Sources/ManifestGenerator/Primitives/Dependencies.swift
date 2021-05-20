@@ -3,12 +3,9 @@ import Core
 struct Dependencies: PrimitiveProtocol {
 
     private let dependencies: [Dependency]
-    private let isLastArgument: Bool
 
-    init(_ dependencies: [Dependency],
-         isLastArgument: Bool) {
+    init(_ dependencies: [Dependency]) {
         self.dependencies = dependencies
-        self.isLastArgument = isLastArgument
     }
 
     private func dependencyString(from dependency: Dependency) -> String {
@@ -56,9 +53,9 @@ struct Dependencies: PrimitiveProtocol {
 
     var string: String {
         """
-        dependencies: [
+        [
         \(body)
-        ]\(isLastArgument ? "" : ",")
+        ]
         """
     }
 }
