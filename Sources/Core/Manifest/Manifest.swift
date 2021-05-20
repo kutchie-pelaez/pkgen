@@ -1,0 +1,19 @@
+public struct Manifest {
+
+    public internal(set) var swiftToolsVersion: String
+    public internal(set) var name: String
+    public internal(set) var defaultLocalization: Any? // TODO:
+    public internal(set) var platforms: Platforms?
+    public internal(set) var pkgConfig: Any? // TODO:
+    public internal(set) var providers: [Any]? // TODO:
+    public internal(set) var products: [Product]?
+    public internal(set) var dependencies: [Dependency]?
+    public internal(set) var targets: [Target]?
+    public internal(set) var swiftLanguageVersions: [Any]? // TODO:
+    public internal(set) var cLanguageStandard: Any? // TODO:
+    public internal(set) var cxxLanguageStandard: Any? // TODO:
+
+    internal var decodedSwiftToolsVersion: String?
+    internal var decodedName: String?
+    internal var decodedDependencies: [String] = []
+}

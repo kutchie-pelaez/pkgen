@@ -21,31 +21,31 @@ final class PackageGenerator {
             .indented(with: .tab)
             .newLine
 
-        let platforms = Platforms(manifest.platforms, isLastArgument: false)
-            .indented(with: .tab)
-            .newLine
-
-        let products = Products(manifest.products, isLastArgument: false)
-            .indented(with: .tab)
-            .newLine
-
-        let dependencies = Dependencies(manifest.dependencies, isLastArgument: false)
-            .indented(with: .tab)
-            .newLine
-
-        let targets = Targets(manifest.targets, isLastArgument: true)
-            .indented(with: .tab)
-            .newLine
+//        let platforms = Platforms(manifest.platforms, isLastArgument: false)
+//            .indented(with: .tab)
+//            .newLine
+//
+//        let products = Products(manifest.products, isLastArgument: false)
+//            .indented(with: .tab)
+//            .newLine
+//
+//        let dependencies = Dependencies(manifest.dependencies, isLastArgument: false)
+//            .indented(with: .tab)
+//            .newLine
+//
+//        let targets = Targets(manifest.targets, isLastArgument: true)
+//            .indented(with: .tab)
+//            .newLine
 
         return header
-            .chain(packageDeclartion)
-            .chain(name)
-            .chain(platforms)
-            .chain(products)
-            .chain(dependencies)
-            .chain(targets)
-            .parenthesis(type: .closed)
-            .newLine
+//            .chain(packageDeclartion)
+//            .chain(name)
+//            .chain(platforms)
+//            .chain(products)
+//            .chain(dependencies)
+//            .chain(targets)
+//            .parenthesis(type: .closed)
+//            .newLine
             .string
     }
 }

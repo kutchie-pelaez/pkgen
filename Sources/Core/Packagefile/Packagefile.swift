@@ -2,6 +2,7 @@ import Foundation
 import Yams
 
 public struct Packagefile: Decodable, Equatable {
+
     public let options: Options
     public let externalDependencies: [ExternalDependency]
 

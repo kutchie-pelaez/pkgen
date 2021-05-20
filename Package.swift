@@ -104,19 +104,7 @@ let testTargets: [Target] = [
 
 // MARK: - Package
 
-//let package = Package(
-//    name: <#T##String#>,
-//    defaultLocalization: <#T##LanguageTag?#>,
-//    platforms: <#T##[SupportedPlatform]?#>,
-//    pkgConfig: <#T##String?#>,
-//    providers: <#T##[SystemPackageProvider]?#>,
-//    products: <#T##[Product]#>,
-//    dependencies: <#T##[Package.Dependency]#>,
-//    targets: <#T##[Target]#>,
-//    swiftLanguageVersions: <#T##[SwiftVersion]?#>,
-//    cLanguageStandard: <#T##CLanguageStandard?#>,
-//    cxxLanguageStandard: <#T##CXXLanguageStandard?#>
-//)
+//let p = Package(name: <#T##String#>, defaultLocalization: LanguageTag?, platforms: <#T##[SupportedPlatform]?#>, pkgConfig: <#T##String?#>, providers: <#T##[SystemPackageProvider]?#>, products: <#T##[Product]#>, dependencies: <#T##[Package.Dependency]#>, targets: <#T##[Target]#>, swiftLanguageVersions: <#T##[SwiftVersion]?#>, cLanguageStandard: <#T##CLanguageStandard?#>, cxxLanguageStandard: <#T##CXXLanguageStandard?#>)
 
 let package = Package(
     name: name,
