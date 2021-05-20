@@ -30,7 +30,7 @@ extension PrimitiveProtocol {
         chain(Dependencies(dependencies, isLastArgument: isLastArgument))
     }
 
-    func targets(_ targets: [Target], isLastArgument: Bool = false) -> PrimitiveProtocol {
+    func targets(_ targets: [Target], isLastArgument: Bool) -> PrimitiveProtocol {
         chain(Targets(targets, isLastArgument: isLastArgument))
     }
 }
@@ -49,6 +49,10 @@ extension PrimitiveProtocol {
 
     func parenthesis(type parenthesisType: Parenthesis.ParenthesisType) -> PrimitiveProtocol {
         chain(Parenthesis(parenthesisType))
+    }
+
+    func propertyDeclaration(name: String, type: String? = nil, isMutable: Bool = false) {
+        chain(PropertyDeclaration(name: name, type: type, isMutable: isMutable))
     }
 
     func indented(with indentation: Indentation) -> PrimitiveProtocol {
