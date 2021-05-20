@@ -143,7 +143,18 @@ private extension ManifestGenerator {
     }
 
     var package: PrimitiveProtocol {
-        Empty()
+        Package(
+            hasDefaultLocalization: manifest.defaultLocalization != nil,
+            hasPlatforms: manifest.platforms != nil,
+            hasPKGConfig: manifest.pkgConfig != nil,
+            hasProviders: manifest.providers != nil,
+            hasProducts: manifest.products != nil,
+            hasDependencies: manifest.dependencies != nil,
+            hasTargets: manifest.targets != nil,
+            hasSwiftLanguageVersions: manifest.swiftLanguageVersions != nil,
+            hasCLanguageStandard: manifest.cLanguageStandard != nil,
+            hasCXXLanguageStandard: manifest.cxxLanguageStandard != nil
+        )
     }
 }
 
