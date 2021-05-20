@@ -7,6 +7,7 @@ struct NewLine: PrimitiveProtocol {
     }
 
     var string: String {
-        Array(repeating: "\n", count: count).joined()
+        Array(repeating: "\n", count: count)
+            .joined()
     }
 }

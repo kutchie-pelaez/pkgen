@@ -1,11 +1,36 @@
-options:
-  swiftToolsVersion: '5.3'
-  platforms:
-    iOS: v14
-    macOS: v10_13
+swiftToolsVersion: '5.3'
+
+platforms:
+  iOS: v14
+  macOS: v10_13
+  tvOS: v14
+  watchOS: v7
+
+defaultLocalization: en_US
+
+pkgConfig: pkg_config_value
+
+providers:
+  - type: apt
+    packages:
+      - a
+      - b
+  - type: brew
+    packages:
+      - c
+      - d
 
 externalDependencies:
   - github: kylef/PathKit
     branch: master
   - github: jpsim/Yams
     from: '4.0.0'
+
+swiftLanguageVersions:
+  - v4
+  - v4_2
+  - v5
+
+cLanguageStandard: c99
+
+cxxLanguageStandard: cxx98

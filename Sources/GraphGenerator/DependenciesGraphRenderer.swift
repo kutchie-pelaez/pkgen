@@ -51,10 +51,7 @@ public final class DependenciesGraphRenderer {
     }
 
     private func populateDependenciesAndRelations() throws {
-        // External
-        let packagefileData = try packagefilePath.read()
-        let packagefile = try Packagefile(from: packagefileData)
-        externalNodes = try packagefile.externalDependencies.map { try $0.name() }
+        
     }
 
     private func f() {

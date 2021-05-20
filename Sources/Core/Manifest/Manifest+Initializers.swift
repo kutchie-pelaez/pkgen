@@ -59,7 +59,7 @@ extension Manifest {
 
         // swiftToolsVersion
         if manifest.decodedSwiftToolsVersion == nil {
-            if let packagefileSwiftToolsVersion = packagefile.options.swiftToolsVersion {
+            if let packagefileSwiftToolsVersion = packagefile.swiftToolsVersion {
                 manifest.decodedSwiftToolsVersion = packagefileSwiftToolsVersion
             } else {
                 throw ManifestDecodingError.noSwiftToolsVersionSpecified
@@ -71,27 +71,24 @@ extension Manifest {
             manifest.name = name
         }
 
-        // TODO: -
         // defaultLocalization
         if manifest.defaultLocalization == nil {
-
+            manifest.defaultLocalization = packagefile.defaultLocalization
         }
 
         // platforms
         if manifest.platforms == nil {
-            manifest.platforms = packagefile.options.platforms
+            manifest.platforms = packagefile.platforms
         }
 
-        // TODO: -
         // pkgConfig
         if manifest.pkgConfig == nil {
-
+            manifest.pkgConfig = packagefile.pkgConfig
         }
 
-        // TODO: -
         // providers
         if manifest.providers == nil {
-
+            manifest.providers = packagefile.providers
         }
 
         // products
@@ -113,9 +110,9 @@ extension Manifest {
         // dependencies
         var decodedDependencies = manifest.decodedDependencies
         if !decodedDependencies.isEmpty {
-            let externalDependencies = try packagefile.externalDependencies
+            let externalDependencies = try packagefile.externalDependencies?
                 .filter { decodedDependencies.contains(try $0.name()) }
-                .map { Dependency.external($0) }
+                .map { Dependency.external($0) } ?? []
             decodedDependencies.removeAll(where: { externalDependencies.compactMap { try? $0.name() }.contains($0) })
             let internalDependencies = decodedDependencies
                 .map { LocalDependency.path($0) }
