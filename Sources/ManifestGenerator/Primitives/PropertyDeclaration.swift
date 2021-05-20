@@ -5,8 +5,8 @@ struct PropertyDeclaration: PrimitiveProtocol {
     private let isMutable: Bool
 
     init(name: String,
-         type: String?,
-         isMutable: Bool) {
+         type: String? = nil,
+         isMutable: Bool = false) {
         self.name = name
         self.type = type
         self.isMutable = isMutable

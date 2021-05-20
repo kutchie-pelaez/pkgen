@@ -1,6 +1,6 @@
 import Core
 
-final class PackageGenerator {
+final class ManifestGenerator {
 
     private let manifest: Manifest
 
@@ -9,44 +9,141 @@ final class PackageGenerator {
     }
 
     public func generateRawPackageBasedOnManifest() throws -> String {
-        let header = SwiftToolsVersion(manifest.swiftToolsVersion)
+        header
+            .chain(name)
+            .chain(defaultLocalization)
+            .chain(platforms)
+            .chain(pkgConfig)
+            .chain(providers)
+            .chain(products)
+            .chain(dependencies)
+            .chain(targets)
+            .chain(swiftLanguageVersions)
+            .chain(cLanguageStandard)
+            .chain(cxxLanguageStandard)
+            .chain(package)
+            .newLine
+            .string
+    }
+}
+
+private extension ManifestGenerator {
+
+    var header: PrimitiveProtocol {
+        SwiftToolsVersion(manifest.swiftToolsVersion)
             .newLines(2)
             .import("PackageDescription")
             .newLines(2)
+    }
 
-        let packageDeclartion = PackageDeclarationStart()
-            .newLine
+    var name: PrimitiveProtocol {
+        PropertyDeclaration(name: "name", type: "String")
+            .chain(manifest.name)
+            .newLines(2)
+    }
 
-        let name = Name(manifest.name, isLastArgument: false)
-            .indented(with: .tab)
-            .newLine
+    var defaultLocalization: PrimitiveProtocol {
+        if let manifestDefaultLocalization = manifest.defaultLocalization {
+            return PropertyDeclaration(name: "defaultLocalization", type: "LanguageTag")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
 
-//        let platforms = Platforms(manifest.platforms, isLastArgument: false)
-//            .indented(with: .tab)
-//            .newLine
-//
-//        let products = Products(manifest.products, isLastArgument: false)
-//            .indented(with: .tab)
-//            .newLine
-//
-//        let dependencies = Dependencies(manifest.dependencies, isLastArgument: false)
-//            .indented(with: .tab)
-//            .newLine
-//
-//        let targets = Targets(manifest.targets, isLastArgument: true)
-//            .indented(with: .tab)
-//            .newLine
+    var platforms: PrimitiveProtocol {
+        if let manifestPlatforms = manifest.platforms {
+            return PropertyDeclaration(name: "platforms", type: "[SupportedPlatform]")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
 
-        return header
-//            .chain(packageDeclartion)
-//            .chain(name)
-//            .chain(platforms)
-//            .chain(products)
-//            .chain(dependencies)
-//            .chain(targets)
-//            .parenthesis(type: .closed)
-//            .newLine
-            .string
+    var pkgConfig: PrimitiveProtocol {
+        if let manifestPKGConfig = manifest.pkgConfig {
+            return PropertyDeclaration(name: "pkgConfig", type: "String")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
+
+    var providers: PrimitiveProtocol {
+        if let manifestProviders = manifest.providers {
+            return PropertyDeclaration(name: "providers", type: "[SystemPackageProvider]")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
+
+    var products: PrimitiveProtocol {
+        if let manifestProducts = manifest.products {
+            return PropertyDeclaration(name: "products", type: "[Product]")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
+
+    var dependencies: PrimitiveProtocol {
+        if let manifestDependencies = manifest.dependencies {
+            return PropertyDeclaration(name: "dependencies", type: "[Package.Dependency]")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
+
+    var targets: PrimitiveProtocol {
+        if let manifestTargets = manifest.targets {
+            return PropertyDeclaration(name: "targets", type: "[Target]")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
+
+    var swiftLanguageVersions: PrimitiveProtocol {
+        if let manifestSwiftLanguageVersions = manifest.swiftLanguageVersions {
+            return PropertyDeclaration(name: "swiftLanguageVersions", type: "[SwiftVersion]")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
+
+    var cLanguageStandard: PrimitiveProtocol {
+        if let manifestCLanguageStandard = manifest.cLanguageStandard {
+            return PropertyDeclaration(name: "cLanguageStandard", type: "CLanguageStandard")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
+
+    var cxxLanguageStandard: PrimitiveProtocol {
+        if let manifestCXXLanguageStandard = manifest.cxxLanguageStandard {
+            return PropertyDeclaration(name: "cxxLanguageStandard", type: "[CXXLanguageStandard]")
+                .chain("TODO")
+                .newLines(2)
+        } else {
+            return Empty()
+        }
+    }
+
+    var package: PrimitiveProtocol {
+        Empty()
     }
 }
 
