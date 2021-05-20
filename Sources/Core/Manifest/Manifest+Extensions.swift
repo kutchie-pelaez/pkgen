@@ -47,9 +47,9 @@ extension Manifest: Decodable {
 
         self.swiftLanguageVersions = try? container.decode([SwiftVersion].self, forKey: .swiftLanguageVersions)
 
-        self.cLanguageStandard = try? container.decode(String.self, forKey: .cLanguageStandard) // TODO:
+        self.cLanguageStandard = try? container.decode(CStandard.self, forKey: .cLanguageStandard)
 
-        self.cxxLanguageStandard = try? container.decode(String.self, forKey: .cxxLanguageStandard) // TODO:
+        self.cxxLanguageStandard = try? container.decode(CXXStandard.self, forKey: .cxxLanguageStandard)
     }
 }
 

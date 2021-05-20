@@ -125,7 +125,7 @@ private extension ManifestGenerator {
     var cLanguageStandard: PrimitiveProtocol {
         if let manifestCLanguageStandard = manifest.cLanguageStandard {
             return PropertyDeclaration(name: "cLanguageStandard", type: "CLanguageStandard")
-                .chain("TODO")
+                .cLanguageStandard(manifestCLanguageStandard)
                 .newLines(2)
         } else {
             return Empty()
@@ -135,7 +135,7 @@ private extension ManifestGenerator {
     var cxxLanguageStandard: PrimitiveProtocol {
         if let manifestCXXLanguageStandard = manifest.cxxLanguageStandard {
             return PropertyDeclaration(name: "cxxLanguageStandard", type: "[CXXLanguageStandard]")
-                .chain("TODO")
+                .cxxLanguageStandard(manifestCXXLanguageStandard)
                 .newLines(2)
         } else {
             return Empty()

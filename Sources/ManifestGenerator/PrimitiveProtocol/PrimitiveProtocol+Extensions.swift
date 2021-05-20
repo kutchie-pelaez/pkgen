@@ -33,6 +33,14 @@ extension PrimitiveProtocol {
     func swiftLanguageVersions(_ swiftVersions: [SwiftVersion]) -> PrimitiveProtocol {
         chain(SwiftLanguageVersions(swiftVersions))
     }
+
+    func cLanguageStandard(_ standard: CStandard) -> PrimitiveProtocol {
+        chain(CLanguageStandard(standard))
+    }
+
+    func cxxLanguageStandard(_ standard: CXXStandard) -> PrimitiveProtocol {
+        chain(CXXLanguageStandard(standard))
+    }
 }
 
 // MARK: - Helper primitives

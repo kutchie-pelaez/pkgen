@@ -16,7 +16,7 @@ struct SwiftLanguageVersions: PrimitiveProtocol {
                 result.append(",\n")
             }
 
-            result.append(swiftVersion.rawValue)
+            result.append(".\(swiftVersion.rawValue)")
         }
 
         return result

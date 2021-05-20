@@ -13,9 +13,9 @@ extension Manifest {
                 products: [Product] = [],
                 dependencies: [Dependency] = [],
                 targets: [Target] = [],
-                swiftLanguageVersions: [SwiftVersion]? = nil, // TODO:
-                cLanguageStandard: Any? = nil, // TODO:
-                cxxLanguageStandard: Any? = nil) { // TODO:
+                swiftLanguageVersions: [SwiftVersion]? = nil,
+                cLanguageStandard: CStandard? = nil,
+                cxxLanguageStandard: CXXStandard? = nil) {
         self.swiftToolsVersion = swiftToolsVersion
         self.name = name
         self.defaultLocalization = defaultLocalization
