@@ -65,7 +65,7 @@ private extension ManifestGenerator {
     var pkgConfig: PrimitiveProtocol {
         if let manifestPKGConfig = manifest.pkgConfig {
             return PropertyDeclaration(name: "pkgConfig", type: "String")
-                .chain("TODO")
+                .chain(manifestPKGConfig)
                 .newLines(2)
         } else {
             return Empty()

@@ -8,7 +8,7 @@ extension Manifest {
                 name: String,
                 defaultLocalization: String? = nil, // TODO:
                 platforms: Platforms? = nil,
-                pkgConfig: Any? = nil, // TODO:
+                pkgConfig: String? = nil, // TODO:
                 providers: [Any]? = nil, // TODO:
                 products: [Product] = [],
                 dependencies: [Dependency] = [],
