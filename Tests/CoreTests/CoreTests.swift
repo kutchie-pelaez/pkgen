@@ -4,220 +4,34 @@ import PathKit
 
 // MARK: - Fixture files helpers
 
-private let fixturePackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile"
-private let fixtureFullManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_full.yml"
-private let fixtureEmptyManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_empty.yml"
-private var packagefile: Packagefile!
-private var manifest: Manifest!
-private var fullManifest: Manifest!
-private var emptyManifest: Manifest!
-
-// MARK: - Tests
+private let emptyPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_empty"
+private let fullPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_full"
+private let emptyManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_empty.yml"
+private let fullManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_full.yml"
 
 final class CoreTests: XCTestCase {
 
-    // Packagefile
+    // MARK: - Parsed files
 
-    func test1_packagefileParsing() {
-        do {
-            let packagefileData = try fixturePackagefilePath.read()
-            packagefile = try Packagefile(from: packagefileData)
-        } catch let error {
-            XCTAssert(
-                false,
-                error.localizedDescription
-            )
-        }
-    }
+    private var emptyPackagefile: Packagefile?
+    private var fullPackagefile: Packagefile?
+    private var emptyManifestWithEmptyPackagefile: Manifest?
+    private var emptyManifestWithFullPackagefile: Manifest?
+    private var fullManifestWithEmptyPackagefile: Manifest?
+    private var fullManifestWithFullPackagefile: Manifest?
 
-    func test2_comparingPackagefiles() {
-        XCTAssertEqual(
-            packagefile,
-            Self.expectedPackagefile,
-            "Packagefile from file differs from expected"
-        )
-    }
+    // MARK: - Tests
 
-    // Full manifest
-
-    func test3_fullManifestParsing() {
-        do {
-            let fullManifestData = try fixtureFullManifestPath.read()
-            fullManifest = try Manifest(
-                from: fullManifestData,
-                at: fixtureFullManifestPath,
-                with: packagefile
-            )
-        } catch let error {
-            XCTAssert(
-                false,
-                error.localizedDescription
-            )
-        }
-    }
-
-    func test4_comparingFullManifests() {
-        XCTAssertEqual(
-            fullManifest,
-            Self.expectedFullManifest,
-            "Full manifest from file differs from expected"
-        )
-    }
-
-    // Empty manifest
-
-    func test5_emptyManifestParsing() {
-        do {
-            let emptyManifestData = try fixtureEmptyManifestPath.read()
-            emptyManifest = try Manifest(
-                from: emptyManifestData,
-                at: fixtureEmptyManifestPath,
-                with: packagefile
-            )
-        } catch let error {
-            XCTAssert(
-                false,
-                error.localizedDescription
-            )
-        }
-    }
-
-    func test6_comparingEmptyManifests() {
-        XCTAssertEqual(
-            emptyManifest,
-            Self.expectedEmptyManifest,
-            "Empty manifest from file differs from expected"
-        )
-    }
-}
-
-// MARK: - Private
-
-private extension CoreTests {
-
-    static var expectedPackagefile = Packagefile(
-        swiftToolsVersion: "5.3",
-        defaultLocalization: "en_US",
-        platforms: .init(
-            iOS: "v14",
-            macOS: "v10_13",
-            tvOS: "v14",
-            watchOS: "v7"
-        ),
-        pkgConfig: "pkg_config_value",
-        providers: [
-            .apt(
-                [
-                    "a",
-                    "b"
-                ]
-            ),
-            .brew(
-                [
-                    "c",
-                    "d"
-                ]
-            )
-        ],
-        swiftLanguageVersions: [
-            .v4,
-            .v4_2,
-            .v5
-        ],
-        cLanguageStandard: .c99,
-        cxxLanguageStandard: .cxx98,
-        externalDependencies: [
-            .github(
-                .init(
-                    path: "kylef/PathKit",
-                    route: .branch("master")
-                )
-            ),
-            .github(
-                .init(
-                    path: "jpsim/Yams",
-                    route: .from("4.0.0")
-                )
-            )
-        ]
-    )
-
-    static var expectedFullManifest = Manifest(
-        swiftToolsVersion: "5.2",
-        name: "FullPackage",
-        defaultLocalization: "fr_FR",
-        platforms: .init(
-            iOS: "v13",
-            macOS: "v10_12"
-        ),
-        pkgConfig: "custom_pkg_config",
-        providers: [
-            .yum(
-                [
-                    "x",
-                    "z"
-                ]
-            )
-        ],
-        products: [], // ???
-        dependencies: [], // ???
-        targets: [], // ???
-        swiftLanguageVersions: [
-            .v5
-        ],
-        cLanguageStandard: .c11,
-        cxxLanguageStandard: .cxx14
-    )
-
-    static var expectedEmptyManifest = Manifest(
-        swiftToolsVersion: "5.3",
-        name: "Fixtures",
-        defaultLocalization: "en_US",
-        platforms: .init(
-            iOS: "v14",
-            macOS: "v10_13",
-            tvOS: "v14",
-            watchOS: "v7"
-        ),
-        pkgConfig: "pkg_config_value",
-        providers: [
-            .apt(
-                [
-                    "a",
-                    "b"
-                ]
-            ),
-            .brew(
-                [
-                    "c",
-                    "d"
-                ]
-            )
-        ],
-        products: [
-            .library(
-                .init(
-                    name: "Fixtures",
-                    targets: [
-                        "Fixtures"
-                    ],
-                    linking: .auto
-                )
-            )
-        ],
-        dependencies: nil,
-        targets: [
-            .init(
-                name: "Fixtures",
-                dependencies: []
-            )
-        ],
-        swiftLanguageVersions: [
-            .v4,
-            .v4_2,
-            .v5
-        ],
-        cLanguageStandard: .c99,
-        cxxLanguageStandard: .cxx98
-    )
+    func test01_emptyPackagefileParsing() { testPackagefileParsing(at: emptyPackagefilePath, saveTo: &emptyPackagefile) }
+    func test02_emptyPackagefileComparing() { testPackagefilesComparing(emptyPackagefile, Self.expectedEmptyPackagefile) }
+    func test03_fullPackagefileParsing() { testPackagefileParsing(at: fullPackagefilePath, saveTo: &fullPackagefile) }
+    func test04_fullPackagefileComparing() { testPackagefilesComparing(fullPackagefile, Self.expectedFullPackagefile) }
+    func test05_emptyManifestWithEmptyPackagefileParsing() { testManifestParsing(at: emptyManifestPath, with: emptyPackagefile, saveTo: &emptyManifestWithEmptyPackagefile) }
+    func test06_emptyManifestWithEmptyPackagefileComparing() { testManifestsComparing(emptyManifestWithEmptyPackagefile, Self.expectedEmptyManifestWithEmptyPackagefile) }
+    func test07_emptyManifestWithFullPackagefileParsing() { testManifestParsing(at: emptyManifestPath, with: fullPackagefile, saveTo: &emptyManifestWithFullPackagefile) }
+    func test08_emptyManifestWithFullPackagefileComparing() { testManifestsComparing(emptyManifestWithFullPackagefile, Self.expectedEmptyManifestWithFullPackagefile) }
+    func test09_fullManifestWithEmptyPackagefileParsing() { testManifestParsing(at: fullManifestPath, with: emptyPackagefile, saveTo: &fullManifestWithEmptyPackagefile) }
+    func test10_fullManifestWithEmptyPackagefileComparing() { testManifestsComparing(fullManifestWithEmptyPackagefile, Self.expectedFullManifestWithEmptyPackagefile) }
+    func test11_fullManifestWithFullPackagefileParsing() { testManifestParsing(at: fullManifestPath, with: fullPackagefile, saveTo: &fullManifestWithFullPackagefile) }
+    func test12_fullManifestWithFullPackagefileComparing() { testManifestsComparing(fullManifestWithFullPackagefile, Self.expectedFullManifestWithFullPackagefile) }
 }
