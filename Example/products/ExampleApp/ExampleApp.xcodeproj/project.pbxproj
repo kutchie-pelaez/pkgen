@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2C30229826580C7A0022F6AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C30229726580C7A0022F6AD /* Assets.xcassets */; };
 		2C30229B26580C7A0022F6AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C30229926580C7A0022F6AD /* LaunchScreen.storyboard */; };
 		2C3022A526580C9F0022F6AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3022A426580C9F0022F6AD /* main.swift */; };
+		2C76555D265825870066530B /* App in Frameworks */ = {isa = PBXBuildFile; productRef = 2C76555C265825870066530B /* App */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C76555D265825870066530B /* App in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,6 +38,7 @@
 			children = (
 				2C30228D26580C790022F6AD /* ExampleApp */,
 				2C30228C26580C790022F6AD /* Products */,
+				2C76555B265825870066530B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +69,13 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2C76555B265825870066530B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,6 +92,9 @@
 			dependencies = (
 			);
 			name = ExampleApp;
+			packageProductDependencies = (
+				2C76555C265825870066530B /* App */,
+			);
 			productName = ExampleApp;
 			productReference = 2C30228B26580C790022F6AD /* ExampleApp.app */;
 			productType = "com.apple.product-type.application";
@@ -335,6 +348,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2C76555C265825870066530B /* App */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = App;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C30228326580C790022F6AD /* Project object */;
 }

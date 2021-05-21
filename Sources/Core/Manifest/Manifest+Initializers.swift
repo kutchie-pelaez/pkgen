@@ -130,7 +130,7 @@ extension Manifest {
             let fallbackTargets = [
                 Target(
                     name: name,
-                    dependencies: []
+                    dependencies: (manifest.dependencies ?? []).compactMap { try? $0.name() }
                 )
             ]
 
