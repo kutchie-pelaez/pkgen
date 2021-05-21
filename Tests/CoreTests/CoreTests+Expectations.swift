@@ -5,7 +5,7 @@ import Core
 extension CoreTests {
 
     static let expectedEmptyPackagefile = Packagefile(
-        swiftToolsVersion: nil,
+        swiftToolsVersion: "5.3",
         defaultLocalization: nil,
         platforms: nil,
         pkgConfig: nil,

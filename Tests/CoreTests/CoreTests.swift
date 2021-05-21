@@ -2,6 +2,15 @@
 import XCTest
 import PathKit
 
+// MARK: - Parsed files
+
+private var emptyPackagefile: Packagefile?
+private var fullPackagefile: Packagefile?
+private var emptyManifestWithEmptyPackagefile: Manifest?
+private var emptyManifestWithFullPackagefile: Manifest?
+private var fullManifestWithEmptyPackagefile: Manifest?
+private var fullManifestWithFullPackagefile: Manifest?
+
 // MARK: - Fixture files helpers
 
 private let emptyPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_empty"
@@ -9,18 +18,9 @@ private let fullPackagefilePath = Path(#file).parent().parent().parent() + "Fixt
 private let emptyManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_empty.yml"
 private let fullManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_full.yml"
 
+// MARK: - Tests
+
 final class CoreTests: XCTestCase {
-
-    // MARK: - Parsed files
-
-    private var emptyPackagefile: Packagefile?
-    private var fullPackagefile: Packagefile?
-    private var emptyManifestWithEmptyPackagefile: Manifest?
-    private var emptyManifestWithFullPackagefile: Manifest?
-    private var fullManifestWithEmptyPackagefile: Manifest?
-    private var fullManifestWithFullPackagefile: Manifest?
-
-    // MARK: - Tests
 
     func test01_emptyPackagefileParsing() { testPackagefileParsing(at: emptyPackagefilePath, saveTo: &emptyPackagefile) }
     func test02_emptyPackagefileComparing() { testPackagefilesComparing(emptyPackagefile, Self.expectedEmptyPackagefile) }
