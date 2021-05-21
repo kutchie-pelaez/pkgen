@@ -42,6 +42,7 @@ type: **object**
 
 > - [ ] **swiftToolsVersion**: `String` - Value from Packagefile (if any) will be used if not presented. If Packagefile and manifest don't have this property parsing will fail
 > - [ ] **name**: `String` - Directory name where this file located will be used if not presented
+> - [ ] **defaultLocalization**: `String` - Value from Packagefile (if any) will be used if not presented
 > - [ ] **platforms**: [`Platforms`](#Platforms) - Value from Packagefile (if any) will be used if not presented
 > - [ ] **pkgConfig**: `String` - Value from Packagefile (if any) will be used if not presented
 > - [ ] **providers**: [`[Provider]`](#Provider) - Value from Packagefile (if any) will be used if not presented
