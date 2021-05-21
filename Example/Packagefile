@@ -1,0 +1,4 @@
+swiftToolsVersion: '5.3'
+
+platforms:
+  iOS: v14
