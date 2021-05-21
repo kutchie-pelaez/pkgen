@@ -15,5 +15,5 @@ public struct Manifest {
 
     internal var decodedSwiftToolsVersion: String?
     internal var decodedName: String?
-    internal var decodedDependencies: [String] = []
+    internal var decodedDependencies: [String]?
 }

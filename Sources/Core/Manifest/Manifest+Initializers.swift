@@ -108,20 +108,21 @@ extension Manifest {
         }
 
         // dependencies
-        var decodedDependencies = manifest.decodedDependencies
-        if !decodedDependencies.isEmpty {
-            let externalDependencies = try packagefile.externalDependencies?
-                .filter { decodedDependencies.contains(try $0.name()) }
-                .map { Dependency.external($0) } ?? []
-            let externalDependenciesNames = externalDependencies
-                .map { try? $0.name() }
-                .compactMap { $0 }
-            decodedDependencies.removeAll(where: { externalDependenciesNames.contains($0) })
-            let internalDependencies = decodedDependencies
-                .map { LocalDependency.path($0) }
-                .map { Dependency.local($0) }
-            
-            manifest.dependencies = externalDependencies + internalDependencies
+        if var decodedDependencies = manifest.decodedDependencies {
+            if !decodedDependencies.isEmpty {
+                let externalDependencies = try packagefile.externalDependencies?
+                    .filter { decodedDependencies.contains(try $0.name()) }
+                    .map { Dependency.external($0) } ?? []
+                let externalDependenciesNames = externalDependencies
+                    .map { try? $0.name() }
+                    .compactMap { $0 }
+                decodedDependencies.removeAll(where: { externalDependenciesNames.contains($0) })
+                let internalDependencies = decodedDependencies
+                    .map { LocalDependency.path($0) }
+                    .map { Dependency.local($0) }
+
+                manifest.dependencies = externalDependencies + internalDependencies
+            }
         }
 
         // targets

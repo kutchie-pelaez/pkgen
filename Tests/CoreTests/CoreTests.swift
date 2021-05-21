@@ -5,7 +5,6 @@ import PathKit
 // MARK: - Fixture files helpers
 
 private let fixturePackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile"
-private let fixtureManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package.yml"
 private let fixtureFullManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_full.yml"
 private let fixtureEmptyManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_empty.yml"
 private var packagefile: Packagefile!
@@ -39,35 +38,9 @@ final class CoreTests: XCTestCase {
         )
     }
 
-    // Default manifest
-
-    func test3_manifestParsing() {
-        do {
-            let manifestData = try fixtureManifestPath.read()
-            manifest = try Manifest(
-                from: manifestData,
-                at: fixtureManifestPath,
-                with: packagefile
-            )
-        } catch let error {
-            XCTAssert(
-                false,
-                error.localizedDescription
-            )
-        }
-    }
-
-    func test4_comparingManifests() {
-        XCTAssertEqual(
-            manifest,
-            Self.expectedManifest,
-            "Manifest from file differs from expected"
-        )
-    }
-
     // Full manifest
 
-    func test5_fullManifestParsing() {
+    func test3_fullManifestParsing() {
         do {
             let fullManifestData = try fixtureFullManifestPath.read()
             fullManifest = try Manifest(
@@ -83,7 +56,7 @@ final class CoreTests: XCTestCase {
         }
     }
 
-    func test6_comparingFullManifests() {
+    func test4_comparingFullManifests() {
         XCTAssertEqual(
             fullManifest,
             Self.expectedFullManifest,
@@ -93,7 +66,7 @@ final class CoreTests: XCTestCase {
 
     // Empty manifest
 
-    func test7_emptyManifestParsing() {
+    func test5_emptyManifestParsing() {
         do {
             let emptyManifestData = try fixtureEmptyManifestPath.read()
             emptyManifest = try Manifest(
@@ -109,7 +82,7 @@ final class CoreTests: XCTestCase {
         }
     }
 
-    func test8_comparingEmptyManifests() {
+    func test6_comparingEmptyManifests() {
         XCTAssertEqual(
             emptyManifest,
             Self.expectedEmptyManifest,
@@ -169,70 +142,31 @@ private extension CoreTests {
         ]
     )
 
-    static var expectedManifest = Manifest(
-        swiftToolsVersion: "5.3",
-        name: "Fixtures",
+    static var expectedFullManifest = Manifest(
+        swiftToolsVersion: "5.2",
+        name: "FullPackage",
+        defaultLocalization: "fr_FR",
         platforms: .init(
-            iOS: "v14",
-            macOS: "v10_13",
-            tvOS: "???",
-            watchOS: "???"
+            iOS: "v13",
+            macOS: "v10_12"
         ),
-        products: [
-            .library(
-                .init(
-                    name: "Fixtures",
-                    targets: [
-                        "Fixtures"
-                    ],
-                    linking: .auto
-                )
-            )
-        ],
-        dependencies: [
-            .external(
-                .github(
-                    .init(
-                        path: "kylef/PathKit",
-                        route: .branch("master")
-                    )
-                )
-            ),
-            .external(
-                .github(
-                    .init(
-                        path: "jpsim/Yams",
-                        route: .from("4.0.0")
-                    )
-                )
-            ),
-        ],
-        targets: [
-            .init(
-                name: "Fixtures",
-                dependencies: [
-                    "PathKit",
-                    "Yams"
+        pkgConfig: "custom_pkg_config",
+        providers: [
+            .yum(
+                [
+                    "x",
+                    "z"
                 ]
             )
-        ]
-    )
-
-    static var expectedFullManifest = Manifest(
-        swiftToolsVersion: "",
-        name: "",
-        defaultLocalization: nil,
-        platforms: nil,
-        pkgConfig: nil,
-        providers: nil,
-        products: nil,
-        dependencies: nil,
-        targets: nil,
-        swiftLanguageVersions: nil,
-        cLanguageStandard: nil,
-        cxxLanguageStandard: nil,
-        decodedSwiftToolsVersion: nil,
-        decodedName: nil
+        ],
+        products: [], // ???
+        dependencies: [], // ???
+        targets: [], // ???
+        swiftLanguageVersions: [
+            .v5
+        ],
+        cLanguageStandard: .c11,
+        cxxLanguageStandard: .cxx14
     )
 
     static var expectedEmptyManifest = Manifest(

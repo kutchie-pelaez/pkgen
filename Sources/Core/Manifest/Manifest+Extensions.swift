@@ -38,8 +38,8 @@ extension Manifest: Decodable {
         self.products = try? container.decode([Product].self, forKey: .products)
 
         // Will be populated in init(from:at:with:) from decodedDependencies
-        self.dependencies = []
-        self.decodedDependencies = (try? container.decode([String].self, forKey: .dependencies)) ?? []
+        self.dependencies = nil
+        self.decodedDependencies = try? container.decode([String].self, forKey: .dependencies)
 
         // If not provided init(from:at:with:) will
         // generate one target with package name

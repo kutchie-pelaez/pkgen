@@ -1,11 +1,33 @@
-swiftToolsVersion: '5.3'
+swiftToolsVersion: '5.2'
+
 name: FullPackage
+
+defaultLocalization: fr_FR
+
 platforms:
-  iOS: v14
-  macOS: v10_13
+  iOS: v13
+  macOS: v10_12
+
+pkgConfig: custom_pkg_config
+
+providers:
+  - type: yum
+    packages:
+      - x
+      - z
+
 products:
-  - 
+  - ???
+
 dependencies:
-  -
+  - ???
+
 targets:
-  -
+  - ???
+
+swiftLanguageVersions:
+  - v5
+
+cLanguageStandard: c11
+
+cxxLanguageStandard: cxx14
