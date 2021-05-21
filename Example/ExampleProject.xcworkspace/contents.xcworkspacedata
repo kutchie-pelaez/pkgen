@@ -4,4 +4,19 @@
    <FileRef
       location = "group:products/ExampleApp/ExampleApp.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:packages/App">
+   </FileRef>
+   <FileRef
+      location = "group:packages/Services">
+   </FileRef>
+   <FileRef
+      location = "group:packages/UI">
+   </FileRef>
+   <FileRef
+      location = "group:packages/Constants">
+   </FileRef>
+   <FileRef
+      location = "group:packages/Core">
+   </FileRef>
 </Workspace>
