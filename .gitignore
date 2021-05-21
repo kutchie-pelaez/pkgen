@@ -1,11 +1,19 @@
 .DS_Store
+
+# Artifacts
 Package.resolved
-
-.swiftpm/
 .build/
-.vscode/
 
+# User data
+.swiftpm/
+.vscode/
 xcshareddata/
 xcuserdata/
+project.xcworkspace/
 
+# Fixtures
 Fixtures/**/Package.swift
+
+# Example
+Example/**/Package.swift
+Example/bin/
