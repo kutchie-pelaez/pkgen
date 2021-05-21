@@ -4,10 +4,11 @@ import PathKit
 
 // MARK: - Fixture files paths
 
-private let emptyPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_empty"
-private let fullPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_full"
-private let emptyManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_empty.yml"
-private let fullManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_full.yml"
+private let fixturesPath = Path(#file).parent().parent().parent() + "Fixtures"
+private let emptyPackagefilePath = fixturesPath + "Packagefile_empty"
+private let fullPackagefilePath = fixturesPath + "Packagefile_full"
+private let emptyManifestPath = fixturesPath + "package_empty.yml"
+private let fullManifestPath = fixturesPath + "package_full.yml"
 
 // MARK: - Fixture files
 
