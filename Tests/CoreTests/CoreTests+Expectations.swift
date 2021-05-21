@@ -22,15 +22,50 @@ extension CoreTests {
 extension CoreTests {
 
     static let expectedFullPackagefile = Packagefile(
-        swiftToolsVersion: nil,
-        defaultLocalization: nil,
-        platforms: nil,
-        pkgConfig: nil,
-        providers: nil,
-        swiftLanguageVersions: nil,
-        cLanguageStandard: nil,
-        cxxLanguageStandard: nil,
-        externalDependencies: nil
+        swiftToolsVersion: "5.3",
+        defaultLocalization: "en_US",
+        platforms: .init(
+            iOS: "v14",
+            macOS: "v10_13",
+            tvOS: "v14",
+            watchOS: "v7"
+        ),
+        pkgConfig: "pkg_config_value",
+        providers: [
+            .apt(
+                [
+                    "a",
+                    "b",
+                ]
+            ),
+            .brew(
+                [
+                    "c",
+                    "d",
+                ]
+            ),
+        ],
+        swiftLanguageVersions: [
+            .v4,
+            .v4_2,
+            .v5,
+        ],
+        cLanguageStandard: .c99,
+        cxxLanguageStandard: .cxx98,
+        externalDependencies: [
+            .github(
+                .init(
+                    path: "kylef/PathKit",
+                    route: .branch("master")
+                )
+            ),
+            .github(
+                .init(
+                    path: "jpsim/Yams",
+                    route: .from("4.0.0")
+                )
+            )
+        ]
     )
 }
 
@@ -39,15 +74,30 @@ extension CoreTests {
 extension CoreTests {
 
     static let expectedEmptyManifestWithEmptyPackagefile = Manifest(
-        swiftToolsVersion: "",
-        name: "",
+        swiftToolsVersion: "5.3",
+        name: "Fixtures",
         defaultLocalization: nil,
         platforms: nil,
         pkgConfig: nil,
         providers: nil,
-        products: nil,
+        products: [
+            .library(
+                .init(
+                    name: "Fixtures",
+                    targets: [
+                        "Fixtures"
+                    ],
+                    linking: .auto
+                )
+            )
+        ],
         dependencies: nil,
-        targets: nil,
+        targets: [
+            .init(
+                name: "Fixtures",
+                dependencies: []
+            )
+        ],
         swiftLanguageVersions: nil,
         cLanguageStandard: nil,
         cxxLanguageStandard: nil

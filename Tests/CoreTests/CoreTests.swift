@@ -2,7 +2,14 @@
 import XCTest
 import PathKit
 
-// MARK: - Parsed files
+// MARK: - Fixture files paths
+
+private let emptyPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_empty"
+private let fullPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_full"
+private let emptyManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_empty.yml"
+private let fullManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_full.yml"
+
+// MARK: - Fixture files
 
 private var emptyPackagefile: Packagefile?
 private var fullPackagefile: Packagefile?
@@ -10,13 +17,6 @@ private var emptyManifestWithEmptyPackagefile: Manifest?
 private var emptyManifestWithFullPackagefile: Manifest?
 private var fullManifestWithEmptyPackagefile: Manifest?
 private var fullManifestWithFullPackagefile: Manifest?
-
-// MARK: - Fixture files helpers
-
-private let emptyPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_empty"
-private let fullPackagefilePath = Path(#file).parent().parent().parent() + "Fixtures" + "Packagefile_full"
-private let emptyManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_empty.yml"
-private let fullManifestPath = Path(#file).parent().parent().parent() + "Fixtures" + "package_full.yml"
 
 // MARK: - Tests
 

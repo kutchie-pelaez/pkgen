@@ -1,12 +1,12 @@
 swiftToolsVersion: '5.3'
 
+defaultLocalization: en_US
+
 platforms:
   iOS: v14
   macOS: v10_13
   tvOS: v14
   watchOS: v7
-
-defaultLocalization: en_US
 
 pkgConfig: pkg_config_value
 
@@ -20,12 +20,6 @@ providers:
       - c
       - d
 
-externalDependencies:
-  - github: kylef/PathKit
-    branch: master
-  - github: jpsim/Yams
-    from: '4.0.0'
-
 swiftLanguageVersions:
   - v4
   - v4_2
@@ -34,3 +28,9 @@ swiftLanguageVersions:
 cLanguageStandard: c99
 
 cxxLanguageStandard: cxx98
+
+externalDependencies:
+  - github: kylef/PathKit
+    branch: master
+  - github: jpsim/Yams
+    from: '4.0.0'
