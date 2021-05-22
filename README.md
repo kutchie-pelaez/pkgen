@@ -18,10 +18,20 @@ swift build
 cp .build/debug/pkgen /your/path/to/pkgen
 ```
 
+<br />
+
 ### Homebrew (not supported yet)
 
 ```shell
 brew install pkgen
+```
+
+<br />
+
+### Swift Package Manager
+
+```swift
+.package(url: "https://github.com/kulikov-ivan/pkgen.git", from: "1.0.0"),
 ```
 
 <br />
