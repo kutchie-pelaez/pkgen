@@ -140,7 +140,7 @@ It can be useless when your project has few modules, but it can become really me
 <br />
 <br />
 
-## Available commands
+## Available Commands
 
 ```shell
 pkgen generate
