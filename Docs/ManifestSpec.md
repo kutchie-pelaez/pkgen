@@ -29,13 +29,11 @@
   - [CXXStandard](#cxxstandard)
 
 <br/>
-<br/>
 
 ## General
 
 Manifest file can be written in YAML. Required properties are marked with checkbox.
 
-<br/>
 <br/>
 
 ## Package
@@ -55,8 +53,6 @@ type: **object**
 > - [ ] **cLanguageStandard**: [**`CStandard`**](#CStandard) - Value from `Packagefile` (if any) will be used if not presented
 > - [ ] **cxxLanguageStandard**: [**`CXXStandard`**](#CXXStandard) - Value from `Packagefile` (if any) will be used if not presented
 
-<br/>
-
 <details>
   <summary>Default product</summary>
 
@@ -65,24 +61,17 @@ type: library
 name: <NAME>
 targets: 
   - <NAME>
-
 ```
-
 </details>
-
-<br/>
 
 <details>
   <summary>Default target</summary>
 
 ```yaml
 // TODO: -
-
 ```
-
 </details>
 
-<br/>
 <br/>
 
 ## Platforms
@@ -94,7 +83,6 @@ type: **object**
 > - [ ] **tvOS**: [**`TVOSVersion`**](#TVOSVersion)
 > - [ ] **watchOS**: [**`WatchOSVersion`**](#WatchOSVersion)
 
-<br/>
 <br/>
 
 ### IOSVersion
@@ -110,7 +98,6 @@ type: **enum**
 > `v14`  
 
 <br/>
-<br/>
 
 ### MacOSVersion
 
@@ -125,7 +112,6 @@ type: **enum**
 > `v11`  
 
 <br/>
-<br/>
 
 ### TVOSVersion
 
@@ -139,7 +125,6 @@ type: **enum**
 > `v14`  
 
 <br/>
-<br/>
 
 ### WatchOSVersion
 
@@ -152,7 +137,6 @@ type: **enum**
 > `v6`  
 > `v7`  
 
-<br/>
 <br/>
 
 ## Provider
@@ -173,7 +157,6 @@ type: **object**
 > - [x] **packages**: **`[String]`**
 
 <br/>
-<br/>
 
 ## Product
 
@@ -191,7 +174,6 @@ type: **object**
 > - [ ] **linking**: [**`LinkingType`**](#LinkingType) - `auto` by default
 
 <br/>
-<br/>
 
 ### LinkingType
 
@@ -202,19 +184,12 @@ type: **enum**
 > `auto`  
 
 <br/>
-<br/>
 
 ## PackageDependency
 
 type: **object** or **string**  
 
-If string is provided, parser will search for remote dependency with this name in `Packagefile` firstly  
-
-If remote dependencies were not found and string represents some local path (i.e. is contains `'/'`) parser will search for package at provided path  
-
-If provided string isn't local path (i.e. doesn't contain `'/'`) parser will search for local package at `'../<PROVIDED_STRING>'` path  
-
-<br/>
+If string is provided, parser will search for remote dependency with this name in `Packagefile` firstly. If remote dependencies were not found and string represents some local path (i.e. is contains `'/'`) parser will search for package at provided path. If provided string isn't local path (i.e. doesn't contain `'/'`) parser will search for local package at `'../<PROVIDED_STRING>'` path
 
 > `'SomeRemoteDependencyFromPackagefile'`
 
@@ -282,7 +257,6 @@ If provided string isn't local path (i.e. doesn't contain `'/'`) parser will sea
 > - [ ] **name**: **`String`**
 
 <br/>
-<br/>
 
 ## Target
 
@@ -338,7 +312,6 @@ type: **object**
 > - [ ] **linkerSettings**: [**`[LinkerSetting]`**](#LinkerSetting)
 
 <br/>
-<br/>
 
 ### TargetDependency
 
@@ -362,7 +335,6 @@ type: **object** or **string**
 > - [ ] **condition**: [**`TargetDependencyCondition`**](#TargetDependencyCondition)
 
 <br/>
-<br/>
 
 #### TargetDependencyCondition
 
@@ -371,7 +343,6 @@ type: **object**
 > - [x] **type** = `when`
 > - [ ] **platforms**: [**`[Platform]`**](#Platform)
 
-<br/>
 <br/>
 
 ### Resource
@@ -388,7 +359,6 @@ type: **object**
 > - [ ] **localization**: [**`ResourceLocalization`**](#ResourceLocalization)
 
 <br/>
-<br/>
 
 #### ResourceLocalization
 
@@ -403,7 +373,6 @@ type: **enum** or **string**
 > `base`  
 > `default`  
 
-<br/>
 <br/>
 
 ### CSetting
@@ -428,7 +397,6 @@ type: **object**
 > - [ ] **condition**: [**`BuildSettingCondition`**](#BuildSettingCondition)
 
 <br/>
-<br/>
 
 ### CXXSetting
 
@@ -452,7 +420,6 @@ type: **object**
 > - [ ] **condition**: [**`BuildSettingCondition`**](#BuildSettingCondition)
 
 <br/>
-<br/>
 
 ### SwiftSetting
 
@@ -468,7 +435,6 @@ type: **object**
 > - [x] **flags**: **`[String]`**
 > - [ ] **condition**: [**`BuildSettingCondition`**](#BuildSettingCondition)
 
-<br/>
 <br/>
 
 ### LinkerSetting
@@ -492,7 +458,6 @@ type: **object**
 > - [ ] **condition**: [**`BuildSettingCondition`**](#BuildSettingCondition)
 
 <br/>
-<br/>
 
 ### BuildSettingCondition
 
@@ -503,7 +468,6 @@ type: **object**
 > - [ ] **configuration**: [**`BuildConfiguration`**](#BuildConfiguration)
 
 <br/>
-<br/>
 
 #### BuildConfiguration
 
@@ -512,7 +476,6 @@ type: **enum**
 > `debug`  
 > `release`  
 
-<br/>
 <br/>
 
 ### Platform
@@ -529,7 +492,6 @@ type: **enum**
 > `windows`  
 
 <br/>
-<br/>
 
 ## SwiftVersion
 
@@ -540,7 +502,6 @@ type: **enum**
 > `4_2`  
 > `5`  
 
-<br/>
 <br/>
 
 ## CStandard
@@ -560,7 +521,6 @@ type: **enum**
 > `iso9899_1999`  
 > `iso9899_2011`  
 
-<br/>
 <br/>
 
 ## CXXStandard
