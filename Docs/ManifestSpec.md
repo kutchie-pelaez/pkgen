@@ -164,12 +164,12 @@ type: **object**
 
 *or*
 
-> - [x] **type**: = `brew`
+> - [x] **type** = `brew`
 > - [x] **packages**: **`[String]`**
 
 *or*
 
-> - [x] **type**: = `yum`
+> - [x] **type** = `yum`
 > - [x] **packages**: **`[String]`**
 
 <br/>
@@ -179,13 +179,13 @@ type: **object**
 
 type: **object**
 
-> - [x] **type**: = `executable`
+> - [x] **type** = `executable`
 > - [x] **name**: **`String`**
 > - [x] **targets**: **`[String]`**
 
 *or*
 
-> - [x] **type**: = `library`
+> - [x] **type** = `library`
 > - [x] **name**: **`String`**
 > - [x] **targets**: **`[String]`**
 > - [ ] **linking**: [**`LinkingType`**](#LinkingType) - `auto` by default
