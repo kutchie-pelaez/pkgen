@@ -14,7 +14,7 @@ In addition it helps to visualize all your dependencies by rendering dependencie
 git clone https://github.com/kulikov-ivan/pkgen pkgen
 cd pkgen
 swift build
-cp .build/debug/pkgen /your/folder/for/pkgen/bin/file
+cp .build/debug/pkgen /your/path/to/pkgen
 ```
 
 ### Homebrew (not supported yet)
