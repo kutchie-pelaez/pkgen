@@ -1,0 +1,3 @@
+public struct PackagefileDependency: Equatable {
+
+}

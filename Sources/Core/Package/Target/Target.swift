@@ -1,6 +1,7 @@
 import Foundation
 
 public struct Target: Decodable, Equatable {
+    
     public let name: String
     public let dependencies: [String]
 

@@ -14,6 +14,12 @@ let products: [Product] = [
         targets: [
             "PackageGen"
         ]
+    ),
+    .library(
+        name: "Core",
+        targets: [
+            "Core"
+        ]
     )
 ]
 

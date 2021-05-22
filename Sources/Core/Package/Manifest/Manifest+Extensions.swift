@@ -5,7 +5,18 @@ import Foundation
 extension Manifest: Decodable {
 
     private enum CodingKeys: String, CodingKey {
-        case swiftToolsVersion, name, defaultLocalization, platforms, pkgConfig, providers, products, dependencies, targets, swiftLanguageVersions, cLanguageStandard, cxxLanguageStandard
+        case swiftToolsVersion
+        case name
+        case defaultLocalization
+        case platforms
+        case pkgConfig
+        case providers
+        case products
+        case dependencies
+        case targets
+        case swiftLanguageVersions
+        case cLanguageStandard
+        case cxxLanguageStandard
     }
 
     // Do not use this init directly
@@ -31,7 +42,7 @@ extension Manifest: Decodable {
 
         self.pkgConfig = try? container.decode(String.self, forKey: .pkgConfig)
 
-        self.providers = try? container.decode([PackageProvider].self, forKey: .providers)
+        self.providers = try? container.decode([Provider].self, forKey: .providers)
 
         // If not provided init(from:at:with:) will
         // generate one product with package name
