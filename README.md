@@ -169,8 +169,7 @@ Get detailed usage information from cli
 <br />
 
 ## Contributions
-Feel free to make pull requests, they are always welcome!  
-Open issues/PRs for any bugs, features, or documentation.
+Feel free to make pull requests, they are always welcome! Open issues/PRs for any bugs, features, or documentation.
 
 <br />
 
