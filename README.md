@@ -155,7 +155,7 @@ Arguments:
 pkgen help
 ```
 
-Get detailed usage information from cli
+Get detailed usage information from cli.
 
 <br />
 
