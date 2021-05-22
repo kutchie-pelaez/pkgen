@@ -1,4 +1,4 @@
-# PackageGen
+# PackageGen [![](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/kulikov-ivan/pkgen/master/LICENSE) [![](https://img.shields.io/github/release/kulikov-ivan/pkgen.svg)](https://github.com/kulikov-ivan/pkgen/releases)
 
 PackageGen is command line tool that generates `Package.swift` files for all your modules based on `Packagefile` and `package.yml` files  
 It aims to minimize manifest code writing for new modules by omitting basic properties  
