@@ -27,7 +27,7 @@ type: **object**
 > - [ ] **swiftLanguageVersions**: [**`[SwiftVersion]`**](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md#swiftversion) - Default value to use for all manifests
 > - [ ] **cLanguageStandard**: [**`CStandard`**](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md#cstandard) - Default value to use for all manifests
 > - [ ] **cxxLanguageStandard**: [**`CXXStandard`**](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md#cxxstandard) - Default value to use for all manifests
-> - [ ] **externalDependencies**: [**`[PackagefileDependency]`**](#PackagefileDependency) - List of dependencies to use in manifests
+> - [ ] **dependencies**: [**`[PackagefileDependency]`**](#PackagefileDependency) - List of dependencies to use in manifests
 
 <br/>
 <br/>
