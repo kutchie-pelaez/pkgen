@@ -3,7 +3,7 @@ import PathKit
 import Foundation
 import Core
 
-public final class DependenciesGraphRenderer {
+public final class GraphRenderer {
 
     private let packagefilePath: Path
     private let manifestRootSearchinigPath: Path

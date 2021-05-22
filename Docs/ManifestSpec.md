@@ -393,7 +393,7 @@ type: **object**
 *or*
 
 > - [x] **type** = `unsafeFlags`
-> - [x] **path**: **`[String]`**
+> - [x] **flags**: **`[String]`**
 > - [ ] **condition**: [**`BuildSettingCondition`**](#BuildSettingCondition)
 
 <br/>
@@ -416,7 +416,7 @@ type: **object**
 *or*
 
 > - [x] **type** = `unsafeFlags`
-> - [x] **path**: **`[String]`**
+> - [x] **flags**: **`[String]`**
 > - [ ] **condition**: [**`BuildSettingCondition`**](#BuildSettingCondition)
 
 <br/>
@@ -441,7 +441,7 @@ type: **object**
 
 type: **object**
 
-> - [x] **type** = `define`
+> - [x] **type** = `linkedFramework`
 > - [x] **framework**: **`String`**
 > - [ ] **condition**: [**`BuildSettingCondition`**](#BuildSettingCondition)
 

@@ -1,5 +1,3 @@
-import Foundation
-
 // MARK: - Decodable
 
 extension Manifest: Decodable {
@@ -54,7 +52,7 @@ extension Manifest: Decodable {
 
         // If not provided init(from:at:with:) will
         // generate one target with package name
-        self.targets = try? container.decode([Target].self, forKey: .targets)
+        self.targets = try? container.decode([PackageTarget].self, forKey: .targets)
 
         self.swiftLanguageVersions = try? container.decode([SwiftVersion].self, forKey: .swiftLanguageVersions)
 
@@ -97,7 +95,7 @@ extension Manifest {
     }
 }
 
-// MARK: - Empty
+// MARK: - Empty manifest
 
 extension Manifest {
 

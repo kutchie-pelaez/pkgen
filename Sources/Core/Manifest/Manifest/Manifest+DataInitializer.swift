@@ -82,16 +82,12 @@ extension Manifest {
         // dependencies
         if let decodedDependencies = manifest.decodedDependencies,
            !decodedDependencies.isEmpty {
-            var stringDependenciesToPopulate = decodedDependencies
-
-
+            // TODO: -
         }
 
         // targets
         if manifest.targets == nil {
-//            let fallbackTarget = Target
-//
-//            manifest.targets = [fallbackTarget]
+            // TODO: -
         }
 
         // swiftLanguageVersions

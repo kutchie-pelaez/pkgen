@@ -16,6 +16,24 @@ let products: [Product] = [
         ]
     ),
     .library(
+        name: "PackageGenCLI",
+        targets: [
+            "PackageGenCLI"
+        ]
+    ),
+    .library(
+        name: "GraphRenderer",
+        targets: [
+            "GraphRenderer"
+        ]
+    ),
+    .library(
+        name: "ManifestGenerator",
+        targets: [
+            "ManifestGenerator"
+        ]
+    ),
+    .library(
         name: "Core",
         targets: [
             "Core"
@@ -45,11 +63,11 @@ let targets: [Target] = [
             "SwiftCLI",
             "PathKit",
             "Rainbow",
-            "GraphGenerator"
+            "GraphRenderer"
         ]
     ),
     .target(
-        name: "GraphGenerator",
+        name: "GraphRenderer",
         dependencies: [
             "Core",
             "PathKit",
