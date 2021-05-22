@@ -6,13 +6,11 @@
   - [PackagefileDependency](#packagefiledependency)
 
 <br/>
-<br/>
 
 ## General
 
 Packagefile file can be written in YAML. Required properties are marked with checkbox.
 
-<br/>
 <br/>
 
 ## Packagefile
@@ -29,7 +27,6 @@ type: **object**
 > - [ ] **cxxLanguageStandard**: [**`CXXStandard`**](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md#cxxstandard) - Default value to use for all manifests
 > - [ ] **dependencies**: [**`[PackagefileDependency]`**](#PackagefileDependency) - List of dependencies to use in manifests
 
-<br/>
 <br/>
 
 ## PackagefileDependency
