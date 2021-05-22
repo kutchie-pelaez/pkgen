@@ -13,6 +13,7 @@ In addition it helps to visualize all your dependencies by rendering dependencie
 ```shell
 git clone https://github.com/kulikov-ivan/pkgen pkgen
 cd pkgen
+git checkout release/1.0.0
 swift build
 cp .build/debug/pkgen /your/path/to/pkgen
 ```
