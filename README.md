@@ -146,7 +146,7 @@ dependencies:
 
 <br />
 
-It can be useless when your project has few modules, but it can become really messy when you have 50+ modules to write whole Package.swift for every new module  
+It can be useless when your project has few modules, but it can become really messy when you have 50+ modules to write whole `Package.swift` for every new module  
 
 <br />
 <br />
@@ -157,13 +157,14 @@ It can be useless when your project has few modules, but it can become really me
 pkgen generate
 ```
 
-This will look for a `Packagefile` in the current directory called and generate an Xcode project with the name defined in the spec.
+This will look for a `Packagefile` in the current directory and traverse all subdirectories (excluding hidden directories) in current directory for any `package.yml` files  
+For every `package.yml` found this command will generate Package.swift file next to it  
 
 Options:
 
-- **-q --quietly**: Disable all logs  
-- **--use-cache**: Generate packages only if `package.yml` or `Packagefile` was changed  
-Cache file will be located at `/.pkgen/cache/pkgen_cache.json`  
+- **-q --quietly** - Disable all logs
+- **--use-cache** - Generate packages only if `package.yml` or `Packagefile` was changed  
+Cache file will be located at `/.pkgen/cache/pkgen_cache.json`
 
 <br />
 
@@ -175,8 +176,8 @@ This will take provided `Packagefile` and render `graph.pdf` to provided path
 
 Arguments:
 
-- **packagefile**: Path to `Packagefile`  
-- **path**: Path to `graph.pdf` output file  
+- **packagefile** - Path to `Packagefile`
+- **path** - Path to `graph.pdf` output file
 
 <br />
 
