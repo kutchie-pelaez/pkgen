@@ -32,7 +32,7 @@ brew install pkgen
 
 ## Usage
 
-Basicly, all you need to do is:
+Basically, all you need to do is:
 - Create Packagefile in root of your project
 - Fill Packagefile with your external dependencies and default parameters like `swiftToolsVersion`, `platforms`, `swiftLanguageVersions` etc. (see [Packagefile Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/PackagefileSpec.md) for more info)
 - Add `package.yml` (in root of module, where `Package.swift` file should be located) for every module you have
