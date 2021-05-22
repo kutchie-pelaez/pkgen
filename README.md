@@ -152,7 +152,7 @@ Options:
 
 - **-q --quietly**: Disable all logs  
 - **--use-cache**: Generate packages only if `package.yml` or `Packagefile` was changed  
-Cache file will be located under `/.pkgen/cache/pkgen_cache.json`  
+Cache file will be located at `/.pkgen/cache/pkgen_cache.json`  
 
 <br />
 
