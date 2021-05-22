@@ -97,6 +97,22 @@ let package = Package(
 <details>
   <summary>Module's manifest with PackageGen</summary>
 
+Packagefile:
+```yml
+swiftToolsVersion: '5.3'
+
+platforms:
+  iOS: v14
+
+dependencies:
+  - github: ReactiveX/RxSwift
+    exact: '6.2.0'
+  - github: Alamofire/Alamofire
+    upToNextMajor: '5.2.0'
+
+```
+
+package.yml:
 ```yml
 dependencies:
   - ModuleB
