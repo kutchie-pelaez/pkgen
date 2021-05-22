@@ -6,10 +6,10 @@ import Rainbow
 final class GraphCommand {
 
     @Param
-    var path: String
+    var packagefile: String?
 
     @Param
-    var packagefile: String?
+    var path: String
 
     // MARK: - Routable
 
