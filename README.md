@@ -1,6 +1,6 @@
 # PackageGen
 
-PackageGen is command line tool that generates `Package.swift` files for all your modules base on `Packagefile` and `package.yml` files  
+PackageGen is command line tool that generates `Package.swift` files for all your modules based on `Packagefile` and `package.yml` files  
 It aims to minimize manifest code writing for new modules by omitting basic properties  
 In addition it helps to visualize all your dependencies by rendering dependencies graph to pdf file (see [Rendering Dependencies Graph](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/GraphRendering.md) for more info)  
 
