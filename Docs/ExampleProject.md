@@ -3,13 +3,13 @@
 Example project demonstrates how you can use pkgen manifests in modularized iOS project  
 To bootstrap project use following commands:  
 
-> Generating SPM manifest files  
-> In root directory of pkgen:  
+> To generating SPM manifest files for example project (in Example directory):  
+> 
 ```shell
-cd Example; make install
+make install
 ```
 
-> Open project workspace:  
+> To open project workspace:  
 ```shell
 open ExampleProject.xcworkspace -a Xcode.app
 ```
