@@ -3,9 +3,8 @@
 PackageGen is comman line tool that generates Package.swift files for all your modules base on Packagefile and package.yml files  
 It aims to minimize manifest code writing for new modules by omitting basic properties  
 In addition it helps to visualize all your dependencies by rendering dependencies graph to pdf file (see [Rendering Dependencies Graph](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/GraphRendering.md) for more info)  
-<br />
 
----
+<br />
 <br />
 
 ## Installing
@@ -23,9 +22,8 @@ cp .build/debug/pkgen /your/folder/for/pkgen/bin/file
 ```shell
 brew install pkgen
 ```
-<br />
 
----
+<br />
 <br />
 
 ## Usage
@@ -38,6 +36,7 @@ Basicly, all you need to do is:
 - Fill `package.yml` with required parameters. In most cases it's only module dependencies, but also you can customize any parameters, that Package.swift has (see [Manifest Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md) for more info)  
 - Run `pkgen generate` to generate `Package.swift` for every `package.yml`  
 - [Optional] add `Package.swift` to your `.gitignore` to keep things clear  
+
 <br />
 
 So that is what you can achieve after all steps:  
@@ -101,7 +100,8 @@ let package = Package(
 
 <details>
   <summary>Module's manifest with PackageGen</summary>
-  <br />
+
+<br />
 
 `Packagefile`:
 ```yml
@@ -117,6 +117,7 @@ dependencies:
     upToNextMajor: '5.2.0'
 
 ```
+
 <br />
 
 `package.yml`:
@@ -131,12 +132,12 @@ dependencies:
 ```
 
 </details>
+
 <br />
 
 It can be useless when your project has few modules, but it can become really messy when you have 50+ modules to write whole Package.swift for every new module  
-<br />
 
----
+<br />
 <br />
 
 ## Available commands
@@ -152,6 +153,7 @@ Options:
 - **-q --quietly**: Disable all logs  
 - **--use-cache**: Generate packages only if `package.yml` or `Packagefile` was changed  
 Cache file will be located under `/.pkgen/cache/pkgen_cache.json`  
+
 <br />
 
 ```shell
@@ -164,6 +166,7 @@ Arguments:
 
 - **packagefile**: Path to `Packagefile`  
 - **path**: Path to `graph.pdf` output file  
+
 <br />
 
 ```shell
@@ -171,9 +174,8 @@ pkgen help
 ```
 
 Get detailed usage information from cli  
-<br />
 
----
+<br />
 <br />
 
 ## Documentation
@@ -182,9 +184,8 @@ Get detailed usage information from cli
 - See [Manifest Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md) for available properties for project.yml manifest files  
 - See [Example Project](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ExampleProject.md) to read about how to configure example project  
 - See [Rendering Dependencies Graph](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/GraphRendering.md) to read about how to render dependencies graph for your modules  
-<br />
 
----
+<br />
 <br />
 
 ## Contributions
