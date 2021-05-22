@@ -32,8 +32,8 @@ Basicly, all you need to do is:
 
 - Create Packagefile in root of your project  
 - Fill Packagefile with your external dependencies and default parameters like `swiftToolsVersion`, `platforms`, `swiftLanguageVersions` etc. (see [Packagefile Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/PackagefileSpec.md) for more info)  
-- Add `package.yml` (in root of module, where Package.swift file should be located) for every module you have  
-- Fill `package.yml` with required parameters. In most cases it's only module dependencies, but also you can customize any parameters, that Package.swift has (see [Manifest Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md) for more info)  
+- Add `package.yml` (in root of module, where `Package.swift` file should be located) for every module you have  
+- Fill `package.yml` with required parameters. In most cases it's only module dependencies, but you can also customize any parameters that `Package.swift` has (see [Manifest Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md) for more info)  
 - Run `pkgen generate` to generate `Package.swift` for every `package.yml`  
 - [Optional] add `Package.swift` to your `.gitignore` to keep things clear  
 
