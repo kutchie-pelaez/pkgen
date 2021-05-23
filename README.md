@@ -7,7 +7,7 @@ It seems not really useful when your project has few modules, but process of wri
 Here is simple comparison between two approaches (note that `Packagefile` is one for whole project):
 
 <details>
-  <summary>Vanilla Package.swift</summary>
+<summary>Vanilla Package.swift</summary>
 
 <br />
 
@@ -63,7 +63,7 @@ let package = Package(
 ```
 </details>
 <details>
-  <summary>PackageGen's package.yml</summary>
+<summary>PackageGen's package.yml</summary>
 
 <br />
 
