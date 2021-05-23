@@ -138,7 +138,7 @@ This will look for a `Packagefile` in the current directory and traverse all sub
 Options:
 
 - **-q --quietly** - Disable all logs
-- **--use-cache** - Generate packages only if `package.yml` or `Packagefile` was changed. Cache file will be located at `/.pkgen/cache/pkgen_cache.json`
+- **--use-cache** - Generate packages only if `package.yml` or `Packagefile` was changed. Cache file will be located at `~/.pkgen/cache/pkgen_cache.json`
 
 ```shell
 pkgen graph
