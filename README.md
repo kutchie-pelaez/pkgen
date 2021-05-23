@@ -1,6 +1,9 @@
 # PackageGen [![license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/kulikov-ivan/pkgen/master/LICENSE) [![release](https://img.shields.io/github/release/kulikov-ivan/pkgen.svg)](https://github.com/kulikov-ivan/pkgen/releases)
 
-PackageGen is command line tool that generates `Package.swift` files based on `Packagefile` and `package.yml` files. It helps to minimize manifest code writing for new modules. In addition it can render dependencies graph to give you visual representation of your dependencies (see [Rendering Dependencies Graph](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/GraphRendering.md) for more info).  
+PackageGen is command line tool that generates `Package.swift` files based on `Packagefile` and `package.yml` files. It helps to minimize manifest code writing for new modules.  
+
+In addition it can render dependencies graph to give you visual representation of your dependencies (see [Rendering Dependencies Graph](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/GraphRendering.md) for more info).  
+
 This tool is simply allow you to write same `Package.swift` manifest files in yml and omit some repeating properties by declaring all of them in one place - `Packagefile` (which is also written in yml).  
 It seems not really useful when your project has few modules, but process of writing whole `Package.swift` over and over againg can become messy and tedious when your projects grows (with number of modules respectively).  
 
