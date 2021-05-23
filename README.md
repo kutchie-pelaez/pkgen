@@ -1,48 +1,14 @@
 # PackageGen [![license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/kulikov-ivan/pkgen/master/LICENSE) [![release](https://img.shields.io/github/release/kulikov-ivan/pkgen.svg)](https://github.com/kulikov-ivan/pkgen/releases)
 
-PackageGen is command line tool that generates `Package.swift` files for all your modules based on `Packagefile` and `package.yml` files. It aims to minimize manifest code writing for new modules by omitting basic properties. In addition it helps to visualize all your dependencies by rendering dependencies graph to pdf file (see [Rendering Dependencies Graph](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/GraphRendering.md) for more info).
+PackageGen is command line tool that generates `Package.swift` files based on `Packagefile` and `package.yml` files. It helps to minimize manifest code writing for new modules. In addition it can render dependencies graph to give you visual representation of your dependencies (see [Rendering Dependencies Graph](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/GraphRendering.md) for more info).  
+This tool is simply allow you to write same `Package.swift` manifest files in yml and omit some repeating properties by declaring all of them in one place - `Packagefile` (which is also written in yml).  
+It seems not really useful when your project has few modules, but process of writing whole `Package.swift` over and over againg can become messy and tedious when your projects grows (with number of modules respectively).  
 
-<br />
-
-## Installing
-
-### From release (recommended)
-
-```shell
-git clone https://github.com/kulikov-ivan/pkgen pkgen
-cd pkgen
-git checkout release/1.0.0
-swift build
-cp .build/debug/pkgen /your/path/to/pkgen
-```
-
-### Homebrew (not supported yet)
-
-```shell
-brew install pkgen
-```
-
-### Swift Package Manager
-
-```swift
-.package(url: "https://github.com/kulikov-ivan/pkgen.git", from: "1.0.0")
-```
-
-<br />
-
-## Usage
-
-Basically, all you need to do is:
-- Create Packagefile in root of your project
-- Fill Packagefile with your external dependencies and default parameters like `swiftToolsVersion`, `platforms`, `swiftLanguageVersions` etc. (see [Packagefile Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/PackagefileSpec.md) for more info)
-- Add `package.yml` (in root of module, where `Package.swift` file should be located) for every module you have
-- Fill `package.yml` with required parameters. In most cases it's only module dependencies, but you can also customize any parameters that `Package.swift` has (see [Manifest Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md) for more info)
-- Run `pkgen generate` to generate `Package.swift` for every `package.yml`
-- [Optional] add `Package.swift` to your `.gitignore` to keep things clear
-
-So that is what you can achieve after all steps:
+Just compare this simple examle
 <details>
-  <summary>Module's Package.swift manifest file with vanilla SPM</summary>
+  <summary>Vanilla SPM Package.swift</summary>
+
+<br />
 
 ```swift
 // swift-tools-version:5.3
@@ -96,7 +62,9 @@ let package = Package(
 ```
 </details>
 <details>
-  <summary>Module's manifest with PackageGen</summary>
+  <summary>Manifest file with PackageGen (Packagefile is one for a whole project)</summary>
+
+<br />
 
 `Packagefile`:
 ```yml
@@ -123,7 +91,43 @@ dependencies:
 ```
 </details>
 
-It can be useless when your project has few modules, but it can become really messy when you have 50+ modules to write whole `Package.swift` for every new module.
+<br />
+
+## Installing
+
+### From release (recommended)
+
+```shell
+git clone https://github.com/kulikov-ivan/pkgen pkgen
+cd pkgen
+git checkout release/1.0.0
+swift build
+cp .build/debug/pkgen /your/path/to/pkgen
+```
+
+### Homebrew (not supported yet)
+
+```shell
+brew install pkgen
+```
+
+### Swift Package Manager
+
+```swift
+.package(url: "https://github.com/kulikov-ivan/pkgen.git", from: "1.0.0")
+```
+
+<br />
+
+## Usage
+
+Basically, all you need to do is:
+- Create `Packagefile` in root of your project
+- Fill `Packagefile` with all external dependencies and default parameters (`swiftToolsVersion`, `platforms`, `swiftLanguageVersions` etc.) you need (see [Packagefile Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/PackagefileSpec.md) for more info)
+- Add `package.yml` (in root of package) for every package you have
+- Fill `package.yml` with required parameters. In most cases it's just module dependencies, but you can also customize any parameters that vanilla `Package.swift` has (see [Manifest Spec](https://github.com/kulikov-ivan/pkgen/blob/dev/Docs/ManifestSpec.md) for more info)
+- Run `pkgen generate` to generate `Package.swift` for every pacakge
+- [Optional] add `Package.swift` to your `.gitignore` to keep things clear 🙂
 
 <br />
 
@@ -138,13 +142,13 @@ This will look for a `Packagefile` in the current directory and traverse all sub
 Options:
 
 - **-q --quietly** - Disable all logs
-- **--use-cache** - Generate packages only if `package.yml` or `Packagefile` was changed. Cache file will be located at `~/.pkgen/cache/pkgen_cache.json`
+- **--use-cache** - Generate `Package.swift` for only modifies `package.yml` from last generation (or if `Packagefile` was changed). Cache file will be located at `~/.pkgen/cache/pkgen_cache.json`
 
 ```shell
 pkgen graph
 ```
 
-This will take provided `Packagefile` and render `graph.pdf` to provided path.
+This will take provided `Packagefile` and render `graph.pdf` to output path.
 
 Arguments:
 
