@@ -4,7 +4,8 @@ PackageGen is command line tool that generates `Package.swift` files based on `P
 This tool is simply allow you to write same `Package.swift` manifest files in yml and omit some repeating properties by declaring all of them in one place - `Packagefile` (which is also written in yml).  
 It seems not really useful when your project has few modules, but process of writing whole `Package.swift` over and over againg can become messy and tedious when your projects grows (with number of modules respectively).  
 
-Just compare this simple examle
+Just compare this simple examle:
+
 <details>
   <summary>Vanilla SPM Package.swift</summary>
 
