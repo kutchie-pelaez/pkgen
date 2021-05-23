@@ -32,7 +32,52 @@
 
 ## General
 
-Manifest file can be written in YAML. Required properties are marked with checkbox.
+Manifest file can be written in YAML. Required properties are marked with checkbox. Manifest file should be named `package.yml` and should be located at root of package (like vanilla `Pacakge.swift` file). `package.yml` has structure of [**`Package`**](#Package) object at top level and can be ympty if needed.  
+Manifest depends on `Packagefile` that allows to omit some repeating properties (like `swiftToolsVersion` or `platforms` ) by declaring them in `Packagefile` as default to reduce manifest files size  
+
+Here is an exapmle of packages hierarchy before and after running `pkgen generate` command:
+
+<details>
+<summary>Before generation</summary>
+
+```
+project_root/
+├── Packagefile
+└── packages/
+    ├── PackageA/
+        ├── Sources/...
+        └── package.yml
+    ├── PackageB/
+        ├── Sources/...
+        └── package.yml
+    └── PackageC/
+        ├── Sources/...
+        └── package.yml
+```
+
+</details>
+
+<details>
+<summary>After generation</summary>
+
+```
+project_root/
+├── Packagefile
+└── packages/
+    ├── PackageA/
+        ├── Sources/...
+        ├── Package.swift
+        └── package.yml
+    ├── PackageB/
+        ├── Sources/...
+        ├── Package.swift
+        └── package.yml
+    └── PackageC/
+        ├── Sources/...
+        ├── Package.swift
+        └── package.yml
+```
+</details>
 
 <br/>
 
