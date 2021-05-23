@@ -1,4 +1,4 @@
-public struct Platforms: Decodable, Equatable {
+public struct Platforms: Equatable, Decodable {
     
     public let iOS: IOSVersion?
     public let macOS: MacOSVersion?

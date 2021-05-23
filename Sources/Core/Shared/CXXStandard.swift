@@ -1,4 +1,4 @@
-public enum CXXStandard: String, Decodable, Equatable {
+public enum CXXStandard: String, Equatable, Decodable {
     case cxx98
     case cxx03
     case cxx11

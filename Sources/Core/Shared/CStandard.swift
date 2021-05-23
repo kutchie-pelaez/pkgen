@@ -1,4 +1,4 @@
-public enum CStandard: String, Decodable, Equatable {
+public enum CStandard: String, Equatable, Decodable {
     case c89
     case c90
     case c99

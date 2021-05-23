@@ -1,4 +1,4 @@
-public struct Packagefile: Decodable, Equatable {
+public struct Packagefile: Equatable, Decodable {
 
     public let swiftToolsVersion: String?
     public let defaultLocalization: String?
@@ -8,7 +8,7 @@ public struct Packagefile: Decodable, Equatable {
     public let swiftLanguageVersions: [SwiftVersion]?
     public let cLanguageStandard: CStandard?
     public let cxxLanguageStandard: CXXStandard?
-    public let externalDependencies: [PackagefileDependency]?
+    public let dependencies: [PackagefileDependency]?
 
     public init(swiftToolsVersion: String? = nil,
                 defaultLocalization: String? = nil,
@@ -18,7 +18,7 @@ public struct Packagefile: Decodable, Equatable {
                 swiftLanguageVersions: [SwiftVersion]? = nil,
                 cLanguageStandard: CStandard? = nil,
                 cxxLanguageStandard: CXXStandard? = nil,
-                externalDependencies: [PackagefileDependency]? = nil) {
+                dependencies: [PackagefileDependency]? = nil) {
         self.swiftToolsVersion = swiftToolsVersion
         self.defaultLocalization = defaultLocalization
         self.platforms = platforms
@@ -27,6 +27,6 @@ public struct Packagefile: Decodable, Equatable {
         self.swiftLanguageVersions = swiftLanguageVersions
         self.cLanguageStandard = cLanguageStandard
         self.cxxLanguageStandard = cxxLanguageStandard
-        self.externalDependencies = externalDependencies
+        self.dependencies = dependencies
     }
 }
