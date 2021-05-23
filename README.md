@@ -174,7 +174,7 @@ Get detailed usage information from cli.
 <br />
 
 ## Contributing
-Feel free to make pull requests, they are always welcome! Open issues/PRs for any bugs, features, or documentation.  
+Feel free to make pull requests for any bugs, features, or documentation, they are always welcome!  
 To contribute to pkgen, follow these steps:
 
 1. Fork this repository
