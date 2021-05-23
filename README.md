@@ -32,9 +32,9 @@ let dependencies: [Package.Dependency] = [
 
 let products: [Product] = [
     .library(
-        name: "Constants",
+        name: "ModuleA",
         targets: [
-            "Constants"
+            "ModuleA"
         ]
     )
 ]
