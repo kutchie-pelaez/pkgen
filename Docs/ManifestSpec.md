@@ -240,7 +240,9 @@ type: **enum**
 
 type: **object** or **string**  
 
-If string is provided, parser will search for remote dependency with this name in `Packagefile` firstly. If remote dependencies were not found and string represents some local path (i.e. is contains `'/'`) parser will search for package at provided path. If provided string isn't local path (i.e. doesn't contain `'/'`) parser will search for local package at `'../<PROVIDED_STRING>'` path
+- If string is provided, parser will search for dependency with same id in `Packagefile` firstly.
+- If `Packagefile`'s dependency were not found and string represents some local path (i.e. it contains `'/'`), parser will search for package at provided path.
+- If provided string isn't local path (i.e. doesn't contain `'/'`), parser will search for local package at `'../<PROVIDED_STRING>'` path by default.
 
 > `'SomeDependencyIDFromPackagefile'`
 
