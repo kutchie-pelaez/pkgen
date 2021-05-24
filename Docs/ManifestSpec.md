@@ -242,7 +242,7 @@ type: **object** or **string**
 
 If string is provided, parser will search for remote dependency with this name in `Packagefile` firstly. If remote dependencies were not found and string represents some local path (i.e. is contains `'/'`) parser will search for package at provided path. If provided string isn't local path (i.e. doesn't contain `'/'`) parser will search for local package at `'../<PROVIDED_STRING>'` path
 
-> `'SomeRemoteDependencyFromPackagefile'`
+> `'SomeDependencyIDFromPackagefile'`
 
 *or*
 
