@@ -11,6 +11,8 @@ extension Packagefile.PackagefileDependency: Decodable {
     }
 }
 
+// MARK: - PackagefileDependencyDecodingError
+
 extension Packagefile.PackagefileDependency {
 
     public enum PackagefileDependencyDecodingError: Error {

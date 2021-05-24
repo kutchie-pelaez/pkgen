@@ -42,6 +42,7 @@ Here is an exapmle of project hierarchy before and after running `pkgen generate
 
 ```
 project_root/
+├── ...
 ├── Packagefile
 └── packages/
     ├── PackageA/
@@ -62,6 +63,7 @@ project_root/
 
 ```
 project_root/
+├── ...
 ├── Packagefile
 └── packages/
     ├── PackageA/
@@ -103,9 +105,9 @@ type: **object**
 
 ```yaml
 type: library
-name: <NAME>
-targets: 
-  - <NAME>
+name: <provided_name>
+targets:
+  - <provided_name>
 ```
 </details>
 
@@ -113,7 +115,11 @@ targets:
   <summary>Default target</summary>
 
 ```yaml
-// TODO: -
+type: target
+name: <provided_name>
+dependencies:
+  - <provided_name>
+path: Sources
 ```
 </details>
 

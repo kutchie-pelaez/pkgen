@@ -80,8 +80,10 @@ platforms:
 dependencies:
   - github: ReactiveX/RxSwift
     exact: '6.2.0'
+    id: RxSwift
   - github: Alamofire/Alamofire
     upToNextMajor: '5.2.0'
+    id: Alamofire
 
 ```
 `package.yml`:
@@ -91,7 +93,7 @@ dependencies:
   - ModuleC
   - ModuleD
   - RxSwift
-  - PromiseKit
+  - Alamofire
 ```
 </details>
 
